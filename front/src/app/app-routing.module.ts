@@ -1,3 +1,4 @@
+import { RoleGuard } from './guards/role.guard';
 import { PageComponent } from './layout/page/page.component';
 import { JogadorCreateComponent } from './pages/jogador/jogador-create/jogador-create.component';
 import { NgModule } from '@angular/core';
@@ -15,19 +16,23 @@ import { TorneioCreateComponent } from './pages/torneio/torneio-create/torneio-c
 import { JogoCreateComponent } from './pages/jogo/jogo-create/jogo-create.component';
 import { JogoComponent } from './pages/jogo/jogo/jogo.component';
 import { LoginComponent } from './pages/login/login.component';
+import { AuthenticationGuard } from './guards/authentication.guard';
+import { Role } from './models/user.model';
 
 const routes: Routes = [
   {path:'login', component: LoginComponent},
-
   {path: '', 
   component: PageComponent,
+  canActivate: [AuthenticationGuard],
+  canActivateChild: [AuthenticationGuard],
   children: [
     {path:'', component: HomeComponent},
 
-    {path: 'equipe', children
+    {path: 'equipe',
+    children
     : [
-        {path: '', component: EquipeComponent},
-        {path:'create', component: EquipeCreateComponent},
+        {path: '', component: EquipeComponent, canActivate: [RoleGuard], data: {role: [Role.Jogador, Role.Funcionario]}},
+        {path:'create', component: EquipeCreateComponent, canActivate: [RoleGuard], data: {role: [Role.Jogador]}},
     ]},
   
     {path: 'jogador',  children

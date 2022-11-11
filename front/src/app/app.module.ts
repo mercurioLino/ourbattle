@@ -1,5 +1,7 @@
+import { JsonDateInterceptor } from './interceptors/json-date.interceptor';
+import { JwtAuthInterceptor } from './interceptors/jwt-auth.interceptor';
 import { JogadorCreateComponent } from './pages/jogador/jogador-create/jogador-create.component';
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { BrowserModule } from '@angular/platform-browser';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
@@ -8,7 +10,7 @@ import { AppComponent } from './app.component';
 import { RedDirective } from './directives/red.directive';
 import { FooterComponent } from './layout/footer/footer.component';
 import { HeaderComponent } from './layout/header/header.component';
-import { HttpClientModule } from '@angular/common/http';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NavComponent } from './layout/nav/nav.component';
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
@@ -89,7 +91,11 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
     BrowserAnimationsModule,
     HttpClientModule,
   ],
-  providers: [],
+  providers: [
+    { provide: HTTP_INTERCEPTORS, useClass: JwtAuthInterceptor, multi: true},
+    { provide: HTTP_INTERCEPTORS, useClass: JsonDateInterceptor, multi: true},
+    { provide: LOCALE_ID, useValue: 'pt-BR'},
+  ],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

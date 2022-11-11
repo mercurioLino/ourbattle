@@ -1,45 +1,50 @@
-<mat-sidenav-container class = "container">
+<mat-sidenav-container class="container">
   <mat-sidenav
-   class = "sidenav"
-    mode = "side"
+    class="sidenav"
+    mode="side"
     opened="true"
-    fixedInViewport = "true"
-    fixedTopGap = "64"
-    >
+    fixedInViewport="true"
+    fixedTopGap="64"
+  >
     <mat-nav-list class="nav-list">
-      <a mat-list-item routerLink="/">
+      <a mat-list-item routerLink="/" *ngIf="checkRole(['admin'])">
         <i class="material-icons">home</i>
-        Home</a>
+        Home</a
+      >
 
-        <a mat-list-item routerLink="/jogador">
-          <i class="material-icons">person</i>
-          Jogadores</a>
-      <a mat-list-item routerLink="/equipe">
+      <a mat-list-item routerLink="/jogador" *ngIf="checkRole(['admin'])" >
+        <i class="material-icons">person</i>
+        Jogadores</a
+      >
+      <a mat-list-item routerLink="/equipe" *ngIf="checkRole(['admin'])">
         <i class="material-icons">group</i>
-        Equipes</a>
-      <a mat-list-item routerLink="/torneio">
-      <i class="material-icons">videogame_asset</i>
-        Torneios</a>
-      <a mat-list-item routerLink="/organizacoes">
+        Equipes</a
+      >
+      <a mat-list-item routerLink="/torneio" *ngIf="checkRole(['admin'])">
+        <i class="material-icons">videogame_asset</i>
+        Torneios</a
+      >
+      <a mat-list-item routerLink="/organizacoes" *ngIf="checkRole(['admin'])">
         <i class="material-icons">public</i>
-        Organizações</a>
-      <a mat-list-item routerLink="/jogo">
+        Organizações</a
+      >
+      <a mat-list-item routerLink="/jogo" *ngIf="checkRole(['admin'])">
         <i class="material-icons">public</i>
-        Jogos</a>
+        Jogos</a
+      >
 
-        <a mat-list-item routerLink="/funcionario">
-          <i class="material-icons">person</i>
-          Funcionario</a>
-
+      <a mat-list-item routerLink="/funcionario" *ngIf="checkRole(['admin'])">
+        <i class="material-icons">person</i>
+        Funcionario</a
+      >
 
       <a mat-list-item routerLink="/">
         <i class="material-icons">help_outline</i>
-        Suporte</a>
+        Suporte</a
+      >
     </mat-nav-list>
   </mat-sidenav>
   <mat-sidenav-content class="content">
-    <router-outlet>
-
-    </router-outlet>
+    <router-outlet> </router-outlet>
   </mat-sidenav-content>
 </mat-sidenav-container>
