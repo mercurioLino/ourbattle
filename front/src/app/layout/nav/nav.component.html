@@ -1,0 +1,45 @@
+<mat-sidenav-container class = "container">
+  <mat-sidenav
+   class = "sidenav"
+    mode = "side"
+    opened="true"
+    fixedInViewport = "true"
+    fixedTopGap = "64"
+    >
+    <mat-nav-list class="nav-list">
+      <a mat-list-item routerLink="/">
+        <i class="material-icons">home</i>
+        Home</a>
+
+        <a mat-list-item routerLink="/jogador">
+          <i class="material-icons">person</i>
+          Jogadores</a>
+      <a mat-list-item routerLink="/equipe">
+        <i class="material-icons">group</i>
+        Equipes</a>
+      <a mat-list-item routerLink="/torneio">
+      <i class="material-icons">videogame_asset</i>
+        Torneios</a>
+      <a mat-list-item routerLink="/organizacoes">
+        <i class="material-icons">public</i>
+        Organizações</a>
+      <a mat-list-item routerLink="/jogo">
+        <i class="material-icons">public</i>
+        Jogos</a>
+
+        <a mat-list-item routerLink="/funcionario">
+          <i class="material-icons">person</i>
+          Funcionario</a>
+
+
+      <a mat-list-item routerLink="/">
+        <i class="material-icons">help_outline</i>
+        Suporte</a>
+    </mat-nav-list>
+  </mat-sidenav>
+  <mat-sidenav-content class="content">
+    <router-outlet>
+
+    </router-outlet>
+  </mat-sidenav-content>
+</mat-sidenav-container>

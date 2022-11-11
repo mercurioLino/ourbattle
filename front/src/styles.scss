@@ -1,0 +1,64 @@
+/* You can add global styles to this file, and also import other style files */
+
+html, body { height: 100%; }
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+
+
+
+.red {
+    color: #e35e6b;
+}
+
+.v-middle {
+    vertical-align: middle;
+}
+
+.msg-success {
+    background-color: #28a745;
+    color: #fff;
+}
+
+.msg-error {
+    background-color: #e35e6b;
+    color: #fff;
+}
+
+.mat-form-field-appearance-outline .mat-form-field-outline {
+    color: rgb(255 255 255 / 51%);
+}
+
+.mat-select-value{
+    color: white;
+}
+
+
+.mat-option:hover{
+    background-clip:  rgba(255, 0, 0, 0.853);
+}
+.mat-option.mat-active {
+    background-color: #230131;
+    color: rgba(255, 255, 255, 0.87);
+}
+.mat-option-text:hover {
+    display: inline-block;
+    flex-grow: 1;
+    overflow: hidden;
+    text-overflow: ellipsis;
+
+    background: whitesmoke;
+    color: rgba(0, 0, 0, 0.87);
+}
+
+mat-option[_ngcontent-eeh-c114] {
+    background: whitesmoke;
+    color: rgba(0, 0, 0, 0.87);
+}
+
+mat-option[_ngcontent-eeh-c114]:hover { 
+      background: whitesmoke;
+    color: rgba(0, 0, 0, 0.87);
+}
+.mat-option.mat:hover{
+    background: whitesmoke;
+    color: rgba(0, 0, 0, 0.87);
+}
