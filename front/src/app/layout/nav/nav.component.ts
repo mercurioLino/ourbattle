@@ -22,4 +22,7 @@ export class NavComponent implements OnInit {
     return !!this.user && (roles.indexOf(this.user.role) > -1);
   }
 
+  logout(): void{
+    this.authenticationService.logout()
+  }
 }

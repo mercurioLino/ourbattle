@@ -78,7 +78,7 @@ export class TorneioIndividualService {
     torneio.partidas = []
 
     const jogadoresInscritos = torneio.jogadores;
-    let jogadoresAuxiliar: Jogador[] = [];
+    const jogadoresAuxiliar: Jogador[] = [];
     if(jogadoresInscritos.length < 16){
       return 'Não há jogadores suficientes inscritos para gerar as partidas'
     } 
@@ -99,6 +99,29 @@ export class TorneioIndividualService {
     }
 
     torneio.jogadores = jogadoresAuxiliar;
+    return this.repository.save(torneio);
+  }
+
+  
+  async declararVencedor(id: number, relationEntityDto: RelationEntityDto) {
+    const torneio = await this.repository.findOneBy({ id });
+    if (!torneio) {
+      throw new RecordNotFoundException();
+    }
+    const jogador = await this.repositoryJogador.findOneBy({
+      id: relationEntityDto.id,
+    });
+    if (!jogador) {
+      throw new RecordNotFoundException();
+    }
+
+    if(!torneio.jogadores.includes(jogador)){
+      return "Jogador não está inscrito no torneio para ser declarado como vencedor"
+    }
+
+    torneio.vencedor = jogador;
+    jogador.pontuacao += 1;
+    this.repositoryJogador.save(jogador);
     return this.repository.save(torneio);
   }
 }

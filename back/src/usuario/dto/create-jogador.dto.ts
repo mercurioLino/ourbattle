@@ -1,7 +1,6 @@
-import { PartialType } from "@nestjs/mapped-types";
 import { ApiProperty } from "@nestjs/swagger";
 import { Type } from "class-transformer";
-import { IsEmail, IsOptional, IsString, MaxLength, ValidateNested } from "class-validator";
+import { IsOptional, IsString, MaxLength, ValidateNested } from "class-validator";
 import { Atendimento } from "src/atendimento/entities/atendimento.entity";
 import { Equipe } from "src/equipe/entities/equipe.entity";
 import { JogadorPerfilJogo } from "src/jogador-perfil-jogo/entities/jogador-perfil-jogo.entity";

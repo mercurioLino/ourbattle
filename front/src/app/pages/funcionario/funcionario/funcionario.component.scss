@@ -1,11 +1,28 @@
-mat-card{
-    margin-top: 20px;
-      background-color: rgb(78, 3, 107);
-      color: white;
-      height: 80%;
+mat-card {
+  margin-top: 20px;
+  background-color: rgb(78, 3, 107);
+  color: white;
+  height: 80%;
+}
+
+.container-table {
+  margin-top: 2rem;
+  position: relative;
+  table {
+    width: 100%;
   }
-  button{
-    background-color: rgb(44, 44, 44);
-    color: white;
+
+  .loading-shade {
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 56px;
+
+    background-color: gray;
+    z-index: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
   }
-  
+}

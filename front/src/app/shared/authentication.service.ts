@@ -29,6 +29,7 @@ export class AuthenticationService {
   logout(): void{
     this.storageService.remove(this.propertyName);
     this.currentUserSubject.next(null);
+    this.router.navigate(['/login']);
   }
 
   login(email: string, password: string): Observable<User | null>{

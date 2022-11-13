@@ -1,3 +1,4 @@
+import { SuporteComponent } from './pages/suporte/suporte/suporte.component';
 import { JsonDateInterceptor } from './interceptors/json-date.interceptor';
 import { JwtAuthInterceptor } from './interceptors/jwt-auth.interceptor';
 import { JogadorCreateComponent } from './pages/jogador/jogador-create/jogador-create.component';
@@ -12,6 +13,7 @@ import { FooterComponent } from './layout/footer/footer.component';
 import { HeaderComponent } from './layout/header/header.component';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 import { NavComponent } from './layout/nav/nav.component';
+import {MatDialogModule} from  '@angular/material/dialog'
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { HomeComponent } from './pages/home/home.component';
@@ -43,7 +45,10 @@ import { PageComponent } from './layout/page/page.component';
 import { LoginComponent } from './pages/login/login.component';
 import { MatTableModule } from '@angular/material/table'
 import { MatPaginatorModule } from '@angular/material/paginator'
-import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
+import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { SuporteCreateComponent } from './pages/suporte/suporte-create/suporte-create.component';
+import { EquipeEditComponent } from './pages/equipes/equipe-edit/equipe-edit.component';
+import { EquipeDeleteComponent } from './pages/equipes/equipe-delete/equipe-delete.component'
 
 
 
@@ -70,9 +75,14 @@ import { MatProgressSpinnerModule } from '@angular/material/progress-spinner'
     JogoComponent,
     JogoCreateComponent,
     JogadorPerfilJogoComponent, 
-    JogadorPerfilJogoCreateComponent, PageComponent, LoginComponent, 
+    JogadorPerfilJogoCreateComponent, 
+    PageComponent, 
+    LoginComponent, 
+    SuporteComponent, 
+    SuporteCreateComponent, EquipeEditComponent, EquipeDeleteComponent, 
   ],
   imports: [
+    MatDialogModule,
     MatTableModule,
     MatPaginatorModule,
     MatProgressSpinnerModule,

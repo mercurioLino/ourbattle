@@ -1,25 +1,33 @@
-import { Controller, Post, Body, Get, Param, Patch, Delete, ParseIntPipe, DefaultValuePipe, Query, UseGuards } from "@nestjs/common";
-import { ApiTags } from "@nestjs/swagger";
-import { Role } from "src/enums/role.enum";
-import { RolesGuard } from "src/guards/role.guard";
-import { IsPublic } from "src/shared/dto/decorator";
-import { Roles } from "src/shared/dto/decorator/roles.decorator";
-import { CreatePartidaEquipeDto } from "./dto/create-partida-equipe.dto";
-import { CreatePartidaIndividualDto } from "./dto/create-partida-individual.dto";
-import { UpdatePartidaEquipeDto } from "./dto/update-partida-equipe.dto";
-import { UpdatePartidaIndividualDto } from "./dto/update-partida-individual.dto";
-import { UpdatePartidaDto } from "./dto/update-partida.dto";
-import { PartidaEquipeService } from "./partida-equipe.service";
-import { PartidaIndividualService } from "./partida-individual.service";
-import { PartidaService } from "./partida.service";
+import {
+  Body,
+  Controller,
+  DefaultValuePipe,
+  Delete,
+  Get,
+  Param,
+  ParseIntPipe,
+  Patch,
+  Post,
+  Query
+} from '@nestjs/common';
+import { ApiTags } from '@nestjs/swagger';
+import { RelationEntityDto } from './../shared/dto/relation-entity.dto';
+import { CreatePartidaEquipeDto } from './dto/create-partida-equipe.dto';
+import { CreatePartidaIndividualDto } from './dto/create-partida-individual.dto';
+import { UpdatePartidaEquipeDto } from './dto/update-partida-equipe.dto';
+import { UpdatePartidaIndividualDto } from './dto/update-partida-individual.dto';
+import { PartidaEquipeService } from './partida-equipe.service';
+import { PartidaIndividualService } from './partida-individual.service';
+import { PartidaService } from './partida.service';
 
 @ApiTags('Partida')
 @Controller('partida')
 export class PartidaController {
   constructor(
-    private readonly partidaIndividualService: PartidaIndividualService, 
+    private readonly partidaIndividualService: PartidaIndividualService,
     private readonly partidaEquipeService: PartidaEquipeService,
-    private readonly partidaService: PartidaService) {}
+    private readonly partidaService: PartidaService,
+  ) {}
 
   @Post('equipe')
   createPartidaEquipe(@Body() createPartidaDto: CreatePartidaEquipeDto) {
@@ -27,8 +35,21 @@ export class PartidaController {
   }
 
   @Post('individual')
-  createPartidaIndividual(@Body() createPartidaDto: CreatePartidaIndividualDto ) {
+  createPartidaIndividual(
+    @Body() createPartidaDto: CreatePartidaIndividualDto,
+  ) {
     return this.partidaIndividualService.create(createPartidaDto);
+  }
+
+  @Post('individual/:id/declarar-vencedor')
+  declararVencedor(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() relationEntityDto: RelationEntityDto,
+  ) {
+    return this.partidaIndividualService.declararVencedor(
+      id,
+      relationEntityDto,
+    );
   }
 
   @Get()
@@ -64,8 +85,12 @@ export class PartidaController {
   }
 
   @Patch(':id')
-  updatePartidaIndividual(@Param('id', ParseIntPipe) id: number, @Body() updatePartidaDto: UpdatePartidaIndividualDto | UpdatePartidaEquipeDto) {
-    if(updatePartidaDto instanceof UpdatePartidaIndividualDto){
+  updatePartidaIndividual(
+    @Param('id', ParseIntPipe) id: number,
+    @Body()
+    updatePartidaDto: UpdatePartidaIndividualDto | UpdatePartidaEquipeDto,
+  ) {
+    if (updatePartidaDto instanceof UpdatePartidaIndividualDto) {
       return this.partidaIndividualService.update(id, updatePartidaDto);
     }
     return this.partidaEquipeService.update(id, updatePartidaDto);

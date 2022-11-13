@@ -1,8 +1,10 @@
+import { TorneioIndividual } from 'src/torneio/entities/torneio-individual.entity';
 import { Atendimento } from "src/atendimento/entities/atendimento.entity";
 import { Equipe } from "src/equipe/entities/equipe.entity";
 import { JogadorPerfilJogo } from "src/jogador-perfil-jogo/entities/jogador-perfil-jogo.entity";
-import { Entity, Column, ManyToOne, OneToMany, ChildEntity } from "typeorm";
+import { PartidaIndividual } from 'src/partida/entities/partida-individual.entity';
 import { Usuario } from 'src/usuario/entities/usuario.entity';
+import { ChildEntity, Column, ManyToOne, OneToMany } from "typeorm";
 
 @ChildEntity() 
 export class Jogador extends Usuario{
@@ -15,9 +17,7 @@ export class Jogador extends Usuario{
     @Column()
     pontuacao: number;
 
-    @ManyToOne(() => Equipe, (equipe) => equipe.jogadores,{
-        onDelete: "CASCADE" 
-    })
+    @ManyToOne(() => Equipe, (equipe) => equipe.jogadores)
     equipe?: Equipe;
 
     @OneToMany(() => JogadorPerfilJogo, (perfil) => perfil.jogador, {
@@ -29,4 +29,10 @@ export class Jogador extends Usuario{
         eager: true,
     })
     atendimentos?: Atendimento[];
-}
+
+    @OneToMany(() => PartidaIndividual, (partida) => partida.vencedor)
+    vitoriasPartidasIndividuais?: PartidaIndividual[]
+    /*
+    @OneToMany(() => TorneioIndividual, (torneio) => torneio.vencedor)
+    vitoriasTorneiosIndividuais?: TorneioIndividual[]*/
+}   

@@ -18,6 +18,9 @@ import { JogoComponent } from './pages/jogo/jogo/jogo.component';
 import { LoginComponent } from './pages/login/login.component';
 import { AuthenticationGuard } from './guards/authentication.guard';
 import { Role } from './models/user.model';
+import { SuporteCreateComponent } from './pages/suporte/suporte-create/suporte-create.component';
+import { SuporteComponent } from './pages/suporte/suporte/suporte.component';
+import { EquipeEditComponent } from './pages/equipes/equipe-edit/equipe-edit.component';
 
 const routes: Routes = [
   {path:'login', component: LoginComponent},
@@ -31,46 +34,48 @@ const routes: Routes = [
     {path: 'equipe',
     children
     : [
-        {path: '', component: EquipeComponent, canActivate: [RoleGuard], data: {role: [Role.Jogador, Role.Funcionario]}},
-        {path:'create', component: EquipeCreateComponent, canActivate: [RoleGuard], data: {role: [Role.Jogador]}},
+        {path: '', component: EquipeComponent},
+        {path:'create', component: EquipeCreateComponent,canActivate: [RoleGuard], data: {role: [Role.Admin, Role.Jogador]}},
+        {path: ':id/edit', component: EquipeEditComponent, canActivate: [RoleGuard], data: {role: [Role.Admin, Role.Jogador]}},
+
     ]},
   
     {path: 'jogador',  children
     :[
       {path: '', component: JogadorComponent},
-      {path: 'create', component: JogadorCreateComponent}
+      {path: 'create', component: JogadorCreateComponent},
     ]},
   
     {path: 'jogo',  children
     :[
       {path: '', component: JogoComponent},
-      {path: 'create', component: JogoCreateComponent}
+      {path: 'create', component: JogoCreateComponent, canActivate: [RoleGuard], data: {role: [Role.Admin]}},
     ]},
-  
-  
+
     {path: 'torneio',  children
     :[
       {path: '', component: TorneiosComponent},
-      {path: 'create', component: TorneioCreateComponent}
+      {path: 'create', component: TorneioCreateComponent, canActivate: [RoleGuard], data: {role: [Role.Admin, Role.Organizacao]}},
     ]},
   
-    {path: 'organizacoes', children
+    {path: 'organizacao', children
     : [
         {path: '', component: OrganizacoesComponent},
-        {path:'create', component: OrganizacoesCreateComponent},
+        {path:'create', component: OrganizacoesCreateComponent, canActivate: [RoleGuard], data: {role: [Role.Admin]}},
     ]},
   
     {path: 'funcionario', children
     : [
         {path: '', component: FuncionarioComponent},
-        {path:'create', component: FuncionarioCreateComponent},
+        {path:'create', component: FuncionarioCreateComponent, canActivate: [RoleGuard], data: {role: [Role.Admin, Role.Organizacao]}},
+    ]},
+
+    {path: 'suporte', children
+    : [
+        {path: '', component: SuporteComponent},
+        {path:'create', component: SuporteCreateComponent},
     ]},
   ]},
-
-  
-  
-
-
 ];
 @NgModule({
   imports: [RouterModule.forRoot(routes)],

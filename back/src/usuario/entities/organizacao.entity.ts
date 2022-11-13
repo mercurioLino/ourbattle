@@ -1,10 +1,8 @@
-import { hashSync } from "bcrypt";
 import { IsBoolean, IsOptional } from "class-validator";
-import { Funcionario } from "src/usuario/entities/funcionario.entity";
-import { TorneioIndividual } from "src/torneio/entities/torneio-individual.entity";
 import { Torneio } from "src/torneio/entities/torneio.entity";
-import { BeforeInsert, ChildEntity, Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Funcionario } from "src/usuario/entities/funcionario.entity";
 import { Usuario } from "src/usuario/entities/usuario.entity";
+import { ChildEntity, Column, OneToMany } from "typeorm";
 
 @ChildEntity()
 export class Organizacao extends Usuario{
@@ -23,13 +21,11 @@ export class Organizacao extends Usuario{
 
     @OneToMany(() => Torneio, (torneio) => torneio.organizacao, {
         cascade: true,
-        eager: true,
     })
     torneios: Torneio[];
 
     @OneToMany(() => Funcionario, (funcionario) => funcionario.organizacao, {
         cascade: true,
-        eager: true,
     })
     funcionarios: Funcionario[];
 

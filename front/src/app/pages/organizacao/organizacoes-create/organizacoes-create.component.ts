@@ -47,7 +47,7 @@ export class OrganizacoesCreateComponent implements OnInit {
 
       .subscribe(resp => {
         this.organizacaoService.showMessage('Organizacao criada com sucesso!');
-        this.router.navigate(['organizacoes']);
+        this.router.navigate(['organizacao']);
       });
 
     }else{

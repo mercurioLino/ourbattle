@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Equipe } from 'src/app/models/equipe.model';
 import { ResponseDataList } from 'src/app/models/shared';
@@ -14,7 +15,8 @@ export class EquipesService {
   baseApi = "/equipe";
 
 constructor(private readonly snackBar: MatSnackBar,
-  private readonly http: HttpClient) { }
+  private readonly http: HttpClient,
+  private readonly router: Router) { }
 
   create(equipe: Equipe): Observable<Equipe> {
     return this.http.post<Equipe>(environment.baseUrl + this.baseApi, equipe);
@@ -28,8 +30,10 @@ constructor(private readonly snackBar: MatSnackBar,
     return this.http.patch<Equipe>(environment.baseUrl + this.baseApi + "/" + id, equipe);
   }
 
-  delete(id: number): Observable<Boolean> {
-    return this.http.delete<Boolean>(environment.baseUrl + this.baseApi + "/" + id); 
+  delete(id: number): Observable<boolean> {
+    return this.http.delete<boolean>(
+      environment.baseUrl + this.baseApi + `/${id}`
+    )
   }
 
   list(
@@ -56,4 +60,7 @@ constructor(private readonly snackBar: MatSnackBar,
     });
 
   }
+
+
+
 }

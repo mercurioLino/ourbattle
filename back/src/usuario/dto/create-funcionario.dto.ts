@@ -1,6 +1,6 @@
 import { ApiProperty } from "@nestjs/swagger";
 import { Type } from "class-transformer";
-import { IsString, MaxLength, ValidateNested, IsDateString, MinLength } from "class-validator";
+import { IsDateString, IsString, MaxLength, MinLength } from "class-validator";
 import { RelationEntityDto } from "src/shared/dto/relation-entity.dto";
 import { Organizacao } from "../entities/organizacao.entity";
 import { CreateUsuarioDto } from "./create-usuario.dto";

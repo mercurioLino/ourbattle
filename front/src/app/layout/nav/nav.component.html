@@ -7,42 +7,53 @@
     fixedTopGap="64"
   >
     <mat-nav-list class="nav-list">
-      <a mat-list-item routerLink="/" *ngIf="checkRole(['admin'])">
+      <a mat-list-item routerLink="/">
         <i class="material-icons">home</i>
         Home</a
       >
-
-      <a mat-list-item routerLink="/jogador" *ngIf="checkRole(['admin'])" >
+        <mat-divider></mat-divider>
+      <a mat-list-item routerLink="/jogador">
         <i class="material-icons">person</i>
         Jogadores</a
       >
-      <a mat-list-item routerLink="/equipe" *ngIf="checkRole(['admin'])">
+      <mat-divider></mat-divider>
+      <a mat-list-item routerLink="/equipe">
         <i class="material-icons">group</i>
         Equipes</a
       >
-      <a mat-list-item routerLink="/torneio" *ngIf="checkRole(['admin'])">
-        <i class="material-icons">videogame_asset</i>
+      <mat-divider></mat-divider>
+      <a mat-list-item routerLink="/torneio">
+        <i class="material-icons">gamepad</i>
         Torneios</a
       >
-      <a mat-list-item routerLink="/organizacoes" *ngIf="checkRole(['admin'])">
-        <i class="material-icons">public</i>
+      <mat-divider></mat-divider>
+      <a mat-list-item routerLink="/organizacao">
+        <i class="material-icons">domain</i>
         Organizações</a
       >
-      <a mat-list-item routerLink="/jogo" *ngIf="checkRole(['admin'])">
-        <i class="material-icons">public</i>
+      <mat-divider></mat-divider>
+      <a mat-list-item routerLink="/jogo">
+        <i class="material-icons">videogame_asset</i>
         Jogos</a
       >
+      <mat-divider></mat-divider>
 
-      <a mat-list-item routerLink="/funcionario" *ngIf="checkRole(['admin'])">
+      <a mat-list-item routerLink="/funcionario">
         <i class="material-icons">person</i>
         Funcionario</a
       >
-
-      <a mat-list-item routerLink="/">
-        <i class="material-icons">help_outline</i>
+      <mat-divider></mat-divider>
+      <a mat-list-item routerLink="/suporte">
+        <i class="material-icons">live_help</i>
         Suporte</a
       >
+      <mat-divider></mat-divider>
+      <a mat-list-item routerLink="/" class="exit_button" (click)="logout()">
+        <i class="material-icons">exit_to_app</i>
+        Logout</a
+      >
     </mat-nav-list>
+    
   </mat-sidenav>
   <mat-sidenav-content class="content">
     <router-outlet> </router-outlet>

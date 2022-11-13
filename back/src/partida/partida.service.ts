@@ -38,4 +38,5 @@ export class PartidaService {
   
     return 'Partida removido com sucesso!';
   }
+
 }

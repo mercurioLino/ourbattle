@@ -1,0 +1,17 @@
+<mat-card>
+    <mat-card-title>Solicitar Atendimento</mat-card-title>
+  
+      <form [formGroup]="form">
+        <mat-form-field appearance="outline" style="width: 100%;">
+          <mat-label style="color: white;">
+            Descrição do Problema
+          </mat-label>
+          <input matInput name="descricao" placeholder="Descreva aqui seu problema" style="color: rgb(255, 255, 255);" formControlName="descricao"/>
+        </mat-form-field>
+  
+      </form>
+  
+    <button mat-raised-button (click)="cancel()" class="cancelar">
+      Cancelar </button>
+      <button mat-raised-button (click)="save()">Cadastrar</button>
+  </mat-card>

@@ -74,7 +74,7 @@ export class TorneioEquipeService {
     torneio.partidas = []
 
     const jogadoresInscritos = torneio.equipes;
-    let equipesAuxiliar: Equipe[] = [];
+    const equipesAuxiliar: Equipe[] = [];
     if(jogadoresInscritos.length < 16){
       return 'Não há equipes suficientes inscritas para gerar as partidas'
     } 

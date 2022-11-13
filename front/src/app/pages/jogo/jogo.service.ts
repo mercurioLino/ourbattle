@@ -14,16 +14,33 @@ export class JogoService {
   constructor(private readonly snackBar: MatSnackBar,
     private readonly http: HttpClient) { }
   
-  list(): Observable<Jogo[]>{
-    const params = new HttpParams().set('limit', '9999');
-  
-    return this.http.get<ResponseDataList<Jogo>>(environment.baseUrl+
-      this.baseApi,
-      { params })
-      .pipe(map((resp) => resp.items));
-  
+    findById(id: number): Observable<Jogo> {
+      return this.http.get<Jogo>(environment.baseUrl + this.baseApi + "/" + id);
     }
   
+    update(id: number, jogo: Jogo): Observable<Jogo> {
+      return this.http.patch<Jogo>(environment.baseUrl + this.baseApi + "/" + id, jogo);
+    }
+  
+    delete(id: number): Observable<Boolean> {
+      return this.http.delete<Boolean>(environment.baseUrl + this.baseApi + "/" + id); 
+    }
+  
+    list(
+        page: number,
+        limit: number,
+        search?: string): Observable<ResponseDataList<Jogo>>{
+          let params = new HttpParams().set('page', page).set('limit', limit)
+  
+          if(search?.trim()){
+            params = params.set('search', search.trim())
+          }
+          
+         return this.http.get<ResponseDataList<Jogo>>(
+          environment.baseUrl + this.baseApi, {params}
+        );
+    }
+    
     create(jogo: Jogo): Observable<Jogo> {
       return this.http.post<Jogo>(environment.baseUrl + this.baseApi, jogo);
     } 
