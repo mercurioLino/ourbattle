@@ -19,11 +19,6 @@ export class Organizacao extends Usuario{
     @IsBoolean()
     ativa: boolean;
 
-    @OneToMany(() => Torneio, (torneio) => torneio.organizacao, {
-        cascade: true,
-    })
-    torneios: Torneio[];
-
     @OneToMany(() => Funcionario, (funcionario) => funcionario.organizacao, {
         cascade: true,
     })

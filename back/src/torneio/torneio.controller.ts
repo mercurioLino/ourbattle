@@ -1,3 +1,4 @@
+import { UpdateStatusTorneioDto } from './dto/update-status-torneio.dto';
 import {
   Body, Controller, DefaultValuePipe, Delete, Get, Param, ParseIntPipe, Patch, Post, Query,
   UseGuards
@@ -126,13 +127,37 @@ export class TorneioController {
   
   @Post(':id/declarar-jogador-vencedor')
   @Roles(Role.Admin, Role.Organizacao)
-  declararVencedor(
+  declararJogadorVencedor(
     @Param('id', ParseIntPipe) id: number,
     @Body() relationEntityDto: RelationEntityDto,
   ) {
     return this.torneioIndividualService.declararVencedor(
       id,
       relationEntityDto,
+    );
+  }
+
+  @Post(':id/declarar-equipe-vencedora')
+  @Roles(Role.Admin, Role.Organizacao)
+  declararEquipeVencedora(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() relationEntityDto: RelationEntityDto,
+  ) {
+    return this.torneioEquipeService.declararVencedor(
+      id,
+      relationEntityDto,
+    );
+  }
+
+  @Post(':id/alterar-status')
+  @Roles(Role.Admin, Role.Organizacao)
+  alterarStatus(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() updateStatusTorneio: UpdateStatusTorneioDto,
+  ) {
+    return this.torneioService.alterarStatus(
+      id,
+      updateStatusTorneio,
     );
   }
 }

@@ -14,26 +14,50 @@ private baseApi: string = '/jogador';
 constructor(private readonly snackBar: MatSnackBar,
   private readonly http: HttpClient) { }
 
-list(): Observable<Jogador[]>{
-  const params = new HttpParams().set('limit', '9999');
-
-  return this.http.get<ResponseDataList<Jogador>>(environment.baseUrl+
-    this.baseApi,
-    { params })
-    .pipe(map((resp) => resp.items));
-
-  }
-
   create(jogador: Jogador): Observable<Jogador> {
     return this.http.post<Jogador>(environment.baseUrl + this.baseApi, jogador);
-  } 
+  }
 
-  showMessage(msg: string, IsError: boolean = false): void{
-    this.snackBar.open(msg, 'X', {
+  findById(id: number): Observable<Jogador> {
+    return this.http.get<Jogador>(environment.baseUrl + this.baseApi + "/" + id);
+  }
+
+  update(id: number, jogador: Jogador): Observable<Jogador> {
+    return this.http.patch<Jogador>(
+      environment.baseUrl + this.baseApi + "/" + id,
+      jogador
+    );
+  }
+
+  delete(id: number): Observable<boolean> {
+    return this.http.delete<boolean>(
+      environment.baseUrl + this.baseApi + `/${id}`
+    );
+  }
+
+  list(
+    page: number,
+    limit: number,
+    search?: string
+  ): Observable<ResponseDataList<Jogador>> {
+    let params = new HttpParams().set("page", page).set("limit", limit);
+
+    if (search?.trim()) {
+      params = params.set("search", search.trim());
+    }
+
+    return this.http.get<ResponseDataList<Jogador>>(
+      environment.baseUrl + this.baseApi,
+      { params }
+    );
+  }
+
+  showMessage(msg: string, IsError: boolean = false): void {
+    this.snackBar.open(msg, "X", {
       duration: 3000,
-      horizontalPosition: 'right',
-      verticalPosition: 'top',
-      panelClass: IsError ? ['msg-error'] : ['msg-success']
+      horizontalPosition: "right",
+      verticalPosition: "top",
+      panelClass: IsError ? ["msg-error"] : ["msg-success"],
     });
   }
 }

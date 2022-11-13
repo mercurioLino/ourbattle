@@ -13,8 +13,6 @@ export class Partida{
     @Column()
     hora: string;
 
-    @ManyToOne(() => Torneio, (torneio) => torneio.partidas, {
-        onDelete: "CASCADE"
-    })
+    @ManyToOne(() => Torneio, (torneio) => torneio.partidas)
     torneio: Torneio;
 }

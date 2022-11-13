@@ -98,4 +98,25 @@ export class TorneioEquipeService {
     return this.repository.save(torneio);
   }
 
+  async declararVencedor(id: number, relationEntityDto: RelationEntityDto) {
+    const torneio = await this.repository.findOneBy({ id });
+    if (!torneio) {
+      throw new RecordNotFoundException();
+    }
+    const equipe = await this.repositoryEquipe.findOneBy({
+      id: relationEntityDto.id,
+    });
+    if (!equipe) {
+      throw new RecordNotFoundException();
+    }
+
+    if (!torneio.equipes.map((v) => v.id).includes(equipe.id)) {
+      return 'Jogador não está inscrito no torneio para ser declarado como vencedor';
+    }
+
+    torneio.vencedor = equipe;
+    equipe.pontuacao += 1;
+    this.repositoryEquipe.save(equipe);
+    return this.repository.save(torneio);
+  }
 }

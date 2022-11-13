@@ -44,6 +44,31 @@
           <mat-option value="equipe">Equipe</mat-option>         
         </mat-select>
       </mat-form-field>
+
+      <mat-form-field appearance="outline">
+        <mat-label>Jogo</mat-label>
+        <mat-select name="jogo" formControlName="jogo">
+          <mat-option *ngFor="let jogo of jogos" [value]="jogo">
+            {{ jogo.nome }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.get('jogo')?.hasError('required')">
+          Campo obrigatório
+        </mat-error>
+      </mat-form-field>
+
+      <br/>
+      <mat-form-field appearance="outline">
+        <mat-label>Organização</mat-label>
+        <mat-select name="organizacao" formControlName="organizacao">
+          <mat-option *ngFor="let organizacao of organizacao" [value]="organizacao">
+            {{ organizacao.razaoSocial }}
+          </mat-option>
+        </mat-select>
+        <mat-error *ngIf="form.get('organizacao')?.hasError('required')">
+          Campo obrigatório
+        </mat-error>
+      </mat-form-field>
     </form>
   
     <button mat-raised-button (click)="cancel()" class="cancelar">

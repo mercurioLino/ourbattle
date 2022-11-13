@@ -48,7 +48,7 @@ export class FuncionarioCreateComponent implements OnInit {
  
        .subscribe(resp => {
          this.funcionarioService.showMessage('Funcionario criada com sucesso!');
-         this.router.navigate(['organizacao']);
+         this.router.navigate(['funcionario']);
        });
  
      }else{

@@ -1,0 +1,21 @@
+<mat-card>
+    <mat-card-title>Alterar Suporte</mat-card-title>
+  
+    <form [formGroup]="form">
+      <mat-form-field appearance="outline" style="width: 100%">
+        <mat-label style="color: white"> Nome da Suporte </mat-label>
+        <input
+          matInput
+          name="descricao"
+          placeholder="Nome da Suporte"
+          style="color: rgb(255, 255, 255)"
+          formControlName="descricao"
+        />
+      </mat-form-field>
+    </form>
+  
+    <button mat-raised-button (click)="cancel()" class="cancelar">
+      Cancelar
+    </button>
+    <button mat-raised-button (click)="save()">Alterar</button>
+  </mat-card>

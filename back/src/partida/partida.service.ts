@@ -1,42 +1,49 @@
-import { RecordNotFoundException } from "@exceptions";
-import { Injectable } from "@nestjs/common";
-import { InjectRepository } from "@nestjs/typeorm";
-import { IPaginationOptions, Pagination, paginate } from "nestjs-typeorm-paginate";
-import { FindOptionsWhere, ILike, Repository } from "typeorm";
-import { Partida } from "./entities/partida.entity";
+import { RecordNotFoundException } from '@exceptions';
+import { Injectable } from '@nestjs/common';
+import { InjectRepository } from '@nestjs/typeorm';
+import {
+  IPaginationOptions,
+  Pagination,
+  paginate,
+} from 'nestjs-typeorm-paginate';
+import { FindOptionsWhere, ILike, Repository } from 'typeorm';
+import { Partida } from './entities/partida.entity';
 
 @Injectable()
 export class PartidaService {
-  constructor(@InjectRepository(Partida) private repository: Repository<Partida>) {}
+  constructor(
+    @InjectRepository(Partida) private repository: Repository<Partida>,
+  ) {}
 
-  async findAll(options: IPaginationOptions, search?: string): Promise<Pagination<Partida>> {
-    const where: FindOptionsWhere<Partida>={}; 
+  async findAll(
+    options: IPaginationOptions,
+    search?: string,
+  ): Promise<Pagination<Partida>> {
+    const where: FindOptionsWhere<Partida> = {};
 
     if (search) {
       where.torneio = ILike(`%${search}%`);
     }
-        
-    return paginate<Partida>(this.repository, options, {where});
+
+    return paginate<Partida>(this.repository, options, { where });
   }
 
   async findOne(id: number) {
-    const partida = await this.repository.findOneBy({id});
+    const partida = await this.repository.findOneBy({ id });
 
-    if(!partida){
-      throw new RecordNotFoundException;
+    if (!partida) {
+      throw new RecordNotFoundException();
     }
-        
+
     return partida;
   }
 
   async remove(id: number) {
-    const partida = await this.repository.delete(id);
-  
-    if (!partida?.affected) {
+    const partida = await this.repository.findOneBy({ id });
+    if (!partida) {
       throw new RecordNotFoundException();
     }
-  
-    return 'Partida removido com sucesso!';
-  }
 
+    return this.repository.delete(id);
+  }
 }

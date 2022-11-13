@@ -17,12 +17,12 @@ import {MatDialogModule} from  '@angular/material/dialog'
 import { MatListModule } from '@angular/material/list';
 import { MatSidenavModule } from '@angular/material/sidenav';
 import { HomeComponent } from './pages/home/home.component';
-import { EquipeComponent } from './pages/equipes/equipes/equipe.component';
+import { EquipeComponent } from './pages/equipe/equipe/equipe.component';
 import { MatCardModule } from '@angular/material/card';
 import { MatButtonModule } from '@angular/material/button';
-import { EquipeCreateComponent } from './pages/equipes/equipes-create/equipe-create.component';
+import { EquipeCreateComponent } from './pages/equipe/equipe-create/equipe-create.component';
 import { TorneiosComponent } from './pages/torneio/torneio/torneio.component';
-import { OrganizacoesComponent } from './pages/organizacao/organizacoes/organizacoes.component';
+import { OrganizacaoComponent } from './pages/organizacao/organizacao/organizacao.component';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { ResponseDataList } from './models/shared';
 import { MatInputModule } from '@angular/material/input';
@@ -33,22 +33,36 @@ import { MatFormFieldControl } from '@angular/material/form-field';
 import { MatListOption } from '@angular/material/list';
 import { MatSelectionList } from '@angular/material/list';
 import { JogadorComponent } from './pages/jogador/jogador/jogador.component';
-import { OrganizacoesCreateComponent } from './pages/organizacao/organizacoes-create/organizacoes-create.component';
+import { OrganizacaoCreateComponent } from './pages/organizacao/organizacao-create/organizacao-create.component';
 import { TorneioCreateComponent } from './pages/torneio/torneio-create/torneio-create.component';
 import { FuncionarioComponent } from './pages/funcionario/funcionario/funcionario.component';
 import { FuncionarioCreateComponent } from './pages/funcionario/funcionario-create/funcionario-create.component';
 import { JogoComponent } from './pages/jogo/jogo/jogo.component';
 import { JogoCreateComponent } from './pages/jogo/jogo-create/jogo-create.component';
-import { JogadorPerfilJogoComponent } from './pages/jogador-perfil-jogo/jogador-perfil-jogo/jogador-perfil-jogo.component';
-import { JogadorPerfilJogoCreateComponent } from './pages/jogador-perfil-jogo/jogador-perfil-jogo-create/jogador-perfil-jogo-create.component';
 import { PageComponent } from './layout/page/page.component';
 import { LoginComponent } from './pages/login/login.component';
 import { MatTableModule } from '@angular/material/table'
 import { MatPaginatorModule } from '@angular/material/paginator'
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
 import { SuporteCreateComponent } from './pages/suporte/suporte-create/suporte-create.component';
-import { EquipeEditComponent } from './pages/equipes/equipe-edit/equipe-edit.component';
-import { EquipeDeleteComponent } from './pages/equipes/equipe-delete/equipe-delete.component'
+import { EquipeEditComponent } from './pages/equipe/equipe-edit/equipe-edit.component';
+import { EquipeDeleteComponent } from './pages/equipe/equipe-delete/equipe-delete.component';
+import { FuncionarioEditComponent } from './pages/funcionario/funcionario-edit/funcionario-edit.component';
+import { FuncionarioDeleteComponent } from './pages/funcionario/funcionario-delete/funcionario-delete.component';
+import { TorneioEditComponent } from './pages/torneio/torneio-edit/torneio-edit.component';
+import { TorneioDeleteComponent } from './pages/torneio/torneio-delete/torneio-delete.component';
+import { JogadorEditComponent } from './pages/jogador/jogador-edit/jogador-edit.component';
+import { JogadorDeleteComponent } from './pages/jogador/jogador-delete/jogador-delete.component';
+import { JogoEditComponent } from './pages/jogo/jogo-edit/jogo-edit.component';
+import { JogoDeleteComponent } from './pages/jogo/jogo-delete/jogo-delete.component';
+import { OrganizacaoEditComponent } from './pages/organizacao/organizacao-edit/organizacao-edit.component';
+import { OrganizacaoDeleteComponent } from './pages/organizacao/organizacao-delete/organizacao-delete.component';
+import { SuporteEditComponent } from './pages/suporte/suporte-edit/suporte-edit.component';
+import { SuporteDeleteComponent } from './pages/suporte/suporte-delete/suporte-delete.component';
+import { PerfilComponent } from './pages/perfil/perfil/perfil.component';
+import { PerfilCreateComponent } from './pages/perfil/perfil-create/perfil-create.component';
+import { PerfilEditComponent } from './pages/perfil/perfil-edit/perfil-edit.component';
+import { PerfilDeleteComponent } from './pages/perfil/perfil-delete/perfil-delete.component'
 
 
 
@@ -66,20 +80,18 @@ import { EquipeDeleteComponent } from './pages/equipes/equipe-delete/equipe-dele
     HomeComponent, 
     EquipeComponent, 
     EquipeCreateComponent,
-    OrganizacoesComponent, 
-    OrganizacoesCreateComponent, 
+    OrganizacaoComponent, 
+    OrganizacaoCreateComponent, 
     TorneiosComponent, 
     TorneioCreateComponent, 
     FuncionarioComponent, 
     FuncionarioCreateComponent,
     JogoComponent,
     JogoCreateComponent,
-    JogadorPerfilJogoComponent, 
-    JogadorPerfilJogoCreateComponent, 
     PageComponent, 
     LoginComponent, 
     SuporteComponent, 
-    SuporteCreateComponent, EquipeEditComponent, EquipeDeleteComponent, 
+    SuporteCreateComponent, EquipeEditComponent, EquipeDeleteComponent, FuncionarioEditComponent, FuncionarioDeleteComponent, TorneioEditComponent, TorneioDeleteComponent, JogadorEditComponent, JogadorDeleteComponent, JogoEditComponent, JogoDeleteComponent, OrganizacaoEditComponent, OrganizacaoDeleteComponent, SuporteEditComponent, SuporteDeleteComponent, PerfilComponent, PerfilCreateComponent, PerfilEditComponent, PerfilDeleteComponent, 
   ],
   imports: [
     MatDialogModule,

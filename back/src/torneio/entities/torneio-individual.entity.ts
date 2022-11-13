@@ -1,5 +1,5 @@
 import { Jogador } from 'src/usuario/entities/jogador.entity';
-import { ChildEntity, JoinTable, ManyToMany, ManyToOne, OneToMany } from 'typeorm';
+import { ChildEntity, JoinTable, ManyToMany, ManyToOne } from 'typeorm';
 import { Torneio } from './torneio.entity';
 
 @ChildEntity()

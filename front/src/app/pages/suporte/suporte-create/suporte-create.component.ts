@@ -1,4 +1,4 @@
-import { Atendimento } from './../../../models/atendimento.model';
+import { Suporte } from '../../../models/suporte.model';
 import { SuporteService } from './../suporte.service';
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
@@ -30,17 +30,17 @@ export class SuporteCreateComponent implements OnInit {
     this.form.markAllAsTouched();
     if(this.form.valid){
 
-      const atendimento: Atendimento = this.form.value;
+      const suporte: Suporte = this.form.value;
 
-      this.suporteService.create(atendimento)
+      this.suporteService.create(suporte)
       .pipe(
         catchError((err) =>{
-          this.suporteService.showMessage('Erro ao criar atendimento', true);
+          this.suporteService.showMessage('Erro ao criar suporte', true);
           return err;
         })
       )
       .subscribe(resp => {
-        this.suporteService.showMessage('Atendimento criado com sucesso!');
+        this.suporteService.showMessage('Suporte criado com sucesso!');
         this.router.navigate(['suporte']);
       });
 

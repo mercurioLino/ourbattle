@@ -18,15 +18,6 @@ export class Jogo{
 
     @Column()
     regras: string;
-
-    
-    @OneToMany(() => Torneio, (torneio) => torneio.jogo, {
-        cascade: true,
-        eager: true
-    })
-    @JoinColumn()  
-    torneios: Torneio[];    
-
     
     @OneToMany(() => JogadorPerfilJogo, (perfil) => perfil.jogo, {
         cascade: true,

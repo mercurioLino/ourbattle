@@ -18,11 +18,6 @@ export class CreateJogoDto {
     @IsString()
     @ApiProperty({example:'Proíbido emprestar contas, smurfs, xingar o amiguinho'})
     regras: string;
-    
-    @ValidateNested()
-    @Type(() => RelationEntityDto)
-    @ApiProperty({example:'Objeto do tipo Torneio'})
-    torneios: Torneio[]
 
     @ValidateNested()
     @Type(() => RelationEntityDto)

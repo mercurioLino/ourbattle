@@ -1,7 +1,7 @@
 import { User } from './user.model';
-import { Atendimento } from "./atendimento.model";
+import { Suporte } from "./suporte.model";
 import { Equipe } from "./equipe.model";
-import { JogadorPerfilJogo } from "./jogadorPerfilJogo.model";
+import { Perfil } from "./perfil.model";
 import { Partida } from "./partida.model";
 import { PartidaIndividual } from "./partidaIndividual.model";
 import { TorneioEquipe } from "./torneioEquipe.model";
@@ -9,8 +9,8 @@ import { TorneioEquipe } from "./torneioEquipe.model";
 export interface Jogador extends User{
   nome: string;
   equipe: Equipe;
-  perfis: JogadorPerfilJogo[];
-  atendimentos: Atendimento[];
+  perfis: Perfil[];
+  suportes: Suporte[];
   partidas: Partida[];
   torneios: TorneioEquipe[];
 

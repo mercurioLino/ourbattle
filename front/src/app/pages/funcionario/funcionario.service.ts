@@ -1,6 +1,7 @@
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
+import { Router } from "@angular/router";
 import { Observable } from "rxjs";
 import { Funcionario } from "src/app/models/funcionario.model";
 import { ResponseDataList } from "src/app/models/shared";
@@ -14,13 +15,16 @@ export class FuncionarioService {
 
   constructor(
     private readonly snackBar: MatSnackBar,
-    private readonly http: HttpClient
+    private readonly http: HttpClient,
+    private readonly router: Router
   ) {}
-  
+
+  create(funcionario: Funcionario): Observable<Funcionario> {
+    return this.http.post<Funcionario>(environment.baseUrl + this.baseApi, funcionario);
+  }
+
   findById(id: number): Observable<Funcionario> {
-    return this.http.get<Funcionario>(
-      environment.baseUrl + this.baseApi + "/" + id
-    );
+    return this.http.get<Funcionario>(environment.baseUrl + this.baseApi + "/" + id);
   }
 
   update(id: number, funcionario: Funcionario): Observable<Funcionario> {
@@ -30,9 +34,9 @@ export class FuncionarioService {
     );
   }
 
-  delete(id: number): Observable<Boolean> {
-    return this.http.delete<Boolean>(
-      environment.baseUrl + this.baseApi + "/" + id
+  delete(id: number): Observable<boolean> {
+    return this.http.delete<boolean>(
+      environment.baseUrl + this.baseApi + `/${id}`
     );
   }
 
@@ -50,13 +54,6 @@ export class FuncionarioService {
     return this.http.get<ResponseDataList<Funcionario>>(
       environment.baseUrl + this.baseApi,
       { params }
-    );
-  }
-
-  create(funcionario: Funcionario): Observable<Funcionario> {
-    return this.http.post<Funcionario>(
-      environment.baseUrl + this.baseApi,
-      funcionario
     );
   }
 
