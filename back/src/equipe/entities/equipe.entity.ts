@@ -1,7 +1,6 @@
 import { IsOptional } from "class-validator";
-import { PartidaEquipe } from "src/partida/entities/partida-equipe.entity";
 import { Jogador } from "src/usuario/entities/jogador.entity";
-import { Column, Entity, JoinColumn, JoinTable, ManyToMany, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, OneToMany, PrimaryGeneratedColumn } from "typeorm";
 
 @Entity()
 export class Equipe {

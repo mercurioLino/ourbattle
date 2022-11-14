@@ -1,9 +1,11 @@
+import { User } from './../../models/user.model';
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
-import { Observable } from "rxjs";
+import { map, Observable } from "rxjs";
 import { Equipe } from "src/app/models/equipe.model";
+import { Jogador } from "src/app/models/jogador.model";
 import { ResponseDataList } from "src/app/models/shared";
 import { environment } from "src/environments/environment";
 
@@ -21,6 +23,10 @@ export class EquipeService {
 
   create(equipe: Equipe): Observable<Equipe> {
     return this.http.post<Equipe>(environment.baseUrl + this.baseApi, equipe);
+  }
+
+  inserirJogador(id:number, jogador: Jogador): Observable<Equipe> {
+    return this.http.post<Equipe>(environment.baseUrl + this.baseApi + `/${id}` + "/add-jogador", jogador);
   }
 
   findById(id: number): Observable<Equipe> {
@@ -55,6 +61,16 @@ export class EquipeService {
       environment.baseUrl + this.baseApi,
       { params }
     );
+  }
+
+  listEquipe(): Observable<Equipe[]> {
+    const params = new HttpParams().set("limit", "99");
+
+    return this.http
+      .get<ResponseDataList<Equipe>>(environment.baseUrl + this.baseApi, {
+        params,
+      })
+      .pipe(map((resp) => resp.items));
   }
 
   showMessage(msg: string, IsError: boolean = false): void {

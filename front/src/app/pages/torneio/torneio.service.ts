@@ -1,7 +1,10 @@
+
 import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
-import { Observable } from "rxjs";
+import { map, Observable } from "rxjs";
+import { Equipe } from "src/app/models/equipe.model";
+import { Jogador } from "src/app/models/jogador.model";
 import { ResponseDataList } from "src/app/models/shared";
 import { Torneio } from "src/app/models/torneio.model";
 import { environment } from "src/environments/environment";
@@ -30,6 +33,26 @@ export class TorneioService {
       environment.baseUrl + this.baseApi,
       { params }
     );
+  }
+
+  listTorneioIndividual(): Observable<Torneio[]> {
+    const params = new HttpParams().set("limit", "99");
+
+    return this.http
+      .get<ResponseDataList<Torneio>>(environment.baseUrl + this.baseApi + '/individual', {
+        params,
+      })
+      .pipe(map((resp) => resp.items));
+  }
+
+  listTorneioEquipe(): Observable<Torneio[]> {
+    const params = new HttpParams().set("limit", "99");
+
+    return this.http
+      .get<ResponseDataList<Torneio>>(environment.baseUrl + this.baseApi + '/equipe', {
+        params,
+      })
+      .pipe(map((resp) => resp.items));
   }
 
   createTorneio(
@@ -66,5 +89,13 @@ export class TorneioService {
       verticalPosition: "top",
       panelClass: IsError ? ["msg-error"] : ["msg-success"],
     });
+  }
+
+  inserirJogador(id:number, jogador: Jogador): Observable<Torneio> {
+    return this.http.post<Torneio>(environment.baseUrl + this.baseApi + `/${id}` + "/add-jogador", jogador);
+  }
+
+  inserirEquipe(id:number, equipe: Equipe): Observable<Torneio> {
+    return this.http.post<Torneio>(environment.baseUrl + this.baseApi + `/${id}` + "/add-equipe", equipe);
   }
 }

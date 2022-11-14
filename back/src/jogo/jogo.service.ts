@@ -1,15 +1,15 @@
+import { RecordNotFoundException } from '@exceptions';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
-import { CreateJogoDto } from './dto/create-jogo.dto';
-import { UpdateJogoDto } from './dto/update-jogo.dto';
-import { FindOptionsWhere, ILike, Repository } from 'typeorm';
-import { Jogo } from './entities/jogo.entity';
-import { RecordNotFoundException } from '@exceptions';
 import {
   IPaginationOptions,
-  Pagination,
   paginate,
+  Pagination,
 } from 'nestjs-typeorm-paginate';
+import { FindManyOptions, ILike, Repository } from 'typeorm';
+import { CreateJogoDto } from './dto/create-jogo.dto';
+import { UpdateJogoDto } from './dto/update-jogo.dto';
+import { Jogo } from './entities/jogo.entity';
 
 @Injectable()
 export class JogoService {
@@ -24,13 +24,15 @@ export class JogoService {
     options: IPaginationOptions,
     search?: string,
   ): Promise<Pagination<Jogo>> {
-    const where: FindOptionsWhere<Jogo> = {};
-
+    const where: FindManyOptions<Jogo> = {};
     if (search) {
-      where.categoria = ILike(`%${search}%`);
+      where.where = [
+        { nome: ILike(`%${search}%`) },
+        { categoria: ILike(`%${search}%`) },
+      ];
     }
 
-    return paginate<Jogo>(this.repository, options, { where });
+    return paginate<Jogo>(this.repository, options, where);
   }
 
   async findOne(id: number) {

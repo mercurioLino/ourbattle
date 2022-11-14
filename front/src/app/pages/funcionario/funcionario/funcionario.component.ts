@@ -26,6 +26,8 @@ import { User } from "src/app/models/user.model";
 import { AuthenticationService } from "src/app/shared/authentication.service";
 import { FuncionarioDeleteComponent } from "../funcionario-delete/funcionario-delete.component";
 import { FuncionarioService } from "../funcionario.service";
+import { Organizacao } from 'src/app/models/organizacao.model';
+import { OrganizacaoService } from '../../organizacao/organizacao.service';
 @Component({
   selector: "app-funcionario",
   templateUrl: "./funcionario.component.html",
@@ -37,18 +39,21 @@ export class FuncionarioComponent implements OnInit, AfterViewInit, OnDestroy {
   isLoadingResults: boolean = true;
   data: Funcionario[] = [];
   resultsLength: number = 0;
+  organizacao: Organizacao[] = [];
   subscriptions: Subscription[] = [];
-  displayedColumns: string[] = ["id", "nome", "actions"];
+  displayedColumns: string[] = ["id", "nome", "endereco", "dataNascimento", "organizacao", "organizacaoCNPJ", "actions"];
   form!: FormGroup;
   refresh: Subject<boolean> = new Subject();
 
   user: User | null = null;
-
+  
   constructor(
+    
     private readonly router: Router,
     private readonly funcionarioService: FuncionarioService,
     private readonly authenticationService: AuthenticationService,
     private readonly fb: FormBuilder,
+    private readonly organizacaoService: OrganizacaoService,
     private readonly dialog: MatDialog
   ) {}
 

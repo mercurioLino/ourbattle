@@ -10,7 +10,7 @@ export class PartidaIndividual extends Partida {
   @JoinTable({ name: 'jogadores_por_partida' })
   jogadores: Jogador[];
 
-  @ManyToOne(() => Jogador, (jogador) => jogador.vitoriasPartidasIndividuais, {
+  @ManyToOne(() => Jogador, {
     eager: true,
   })
   vencedor: Jogador;

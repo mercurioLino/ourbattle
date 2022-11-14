@@ -21,7 +21,7 @@ export class OrganizacaoComponent implements OnInit, AfterViewInit, OnDestroy {
   data: Organizacao[] = [];
   resultsLength: number = 0;
   subscriptions: Subscription[] = [];
-  displayedColumns: string[] = ["id", "nome", "actions"];
+  displayedColumns: string[] = ["id", "razaoSocial", "cnpj", "fantasia", "actions"];
   form!: FormGroup;
   refresh: Subject<boolean> = new Subject();
 

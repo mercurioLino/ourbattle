@@ -8,10 +8,11 @@ import { TorneioEquipe } from "./torneioEquipe.model";
 
 export interface Jogador extends User{
   nome: string;
+  nickname: string;
   equipe: Equipe;
   perfis: Perfil[];
   suportes: Suporte[];
   partidas: Partida[];
   torneios: TorneioEquipe[];
-
+  
 }

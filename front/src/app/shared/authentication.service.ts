@@ -6,6 +6,7 @@ import { StorageService } from './storage.service';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, Observable, switchMap, map, of } from 'rxjs';
 import { environment } from 'src/environments/environment';
+import { Jogador } from '../models/jogador.model';
 
 @Injectable({
   providedIn: 'root'
@@ -76,7 +77,7 @@ export class AuthenticationService {
   getCurrentUserValue(): User | null{
     return this.currentUserSubject.value;
   }
-
+  
   private getUserStorage(isRediret: boolean = true){
     let user: User | null = null;
     try{

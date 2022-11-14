@@ -16,13 +16,13 @@ export class Atendimento {
     @Column()
     feedback: string;
 
-    @ManyToOne(() => Jogador, (jogador) => jogador.atendimentos, {
-        onDelete: "CASCADE"
+    @ManyToOne(() => Jogador, {
+        eager: true
     })
     jogador: Jogador;
 
-    @ManyToOne(() => Funcionario, (funcionario) => funcionario.atendimentos, {
-        onDelete: "CASCADE"
+    @ManyToOne(() => Funcionario, {
+        eager: true
     })
     funcionario: Funcionario;
 }

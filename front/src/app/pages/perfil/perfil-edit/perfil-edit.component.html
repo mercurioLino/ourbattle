@@ -12,6 +12,17 @@
           formControlName="nickname"
         />
       </mat-form-field>
+  
+      <mat-form-field appearance="outline" style="width: 100%">
+        <mat-label style="color: white"> Elo </mat-label>
+        <input
+          matInput
+          name="elo"
+          placeholder="Ex: Platina 4"
+          style="color: rgb(255, 255, 255)"
+          formControlName="elo"
+        />
+      </mat-form-field>
     </form>
   
     <button mat-raised-button (click)="cancel()" class="cancelar">

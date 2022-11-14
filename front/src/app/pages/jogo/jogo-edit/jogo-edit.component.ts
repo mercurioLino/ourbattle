@@ -26,6 +26,8 @@ export class JogoEditComponent implements OnInit {
 
     this.form = this.fb.group({
       nome: [null, [Validators.required]],
+      categoria: [null, [Validators.required]],
+      regras: [null, [Validators.required]],
     });
 
     this.jogoService.findById(this.id).subscribe((resp) => {

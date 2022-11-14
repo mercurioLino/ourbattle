@@ -8,7 +8,7 @@ import {
 } from 'nestjs-typeorm-paginate';
 import { CreateAtendimentoDto } from 'src/atendimento/dto/create-atendimento.dto';
 import { Atendimento } from 'src/atendimento/entities/atendimento.entity';
-import { FindOptionsWhere, ILike, Repository } from 'typeorm';
+import { FindManyOptions, ILike, Repository } from 'typeorm';
 import { CreateJogadorDto } from '../dto/create-jogador.dto';
 import { UpdateJogadorDto } from '../dto/update-jogador.dto';
 import { Jogador } from '../entities/jogador.entity';
@@ -42,13 +42,15 @@ export class JogadorService {
     options: IPaginationOptions,
     search?: string,
   ): Promise<Pagination<Jogador>> {
-    const where: FindOptionsWhere<Jogador> = {};
-
+    const where: FindManyOptions<Jogador> = {};
     if (search) {
-      where.nome = ILike(`%${search}%`);
+      where.where = [
+        { nome: ILike(`%${search}%`) },
+        { nickname: ILike(`%${search}%`) },
+      ];
     }
 
-    return paginate<Jogador>(this.repository, options, { where });
+    return paginate<Jogador>(this.repository, options, where);
   }
 
   async update(

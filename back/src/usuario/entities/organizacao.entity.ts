@@ -1,27 +1,23 @@
-import { IsBoolean, IsOptional } from "class-validator";
-import { Torneio } from "src/torneio/entities/torneio.entity";
-import { Funcionario } from "src/usuario/entities/funcionario.entity";
-import { Usuario } from "src/usuario/entities/usuario.entity";
-import { ChildEntity, Column, OneToMany } from "typeorm";
+import { Funcionario } from 'src/usuario/entities/funcionario.entity';
+import { Usuario } from 'src/usuario/entities/usuario.entity';
+import { ChildEntity, Column, OneToMany } from 'typeorm';
 
 @ChildEntity()
-export class Organizacao extends Usuario{
+export class Organizacao extends Usuario {
+  @Column({ length: 14 })
+  cnpj: string;
 
-    @Column({length: 14})
-    cnpj: string;
+  @Column()
+  razaoSocial: string;
 
-    @Column()
-    razaoSocial: string;
+  @Column()
+  nomeFantasia: string;
 
-    @IsOptional()
-    nomeFantasia: string;
+  @Column()
+  status: 'Ativa' | 'Inativa';
 
-    @IsBoolean()
-    ativa: boolean;
-
-    @OneToMany(() => Funcionario, (funcionario) => funcionario.organizacao, {
-        cascade: true,
-    })
-    funcionarios: Funcionario[];
-
+  @OneToMany(() => Funcionario, (funcionario) => funcionario.organizacao, {
+    cascade: true,
+  })
+  funcionarios: Funcionario[];
 }

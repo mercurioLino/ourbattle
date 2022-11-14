@@ -2,7 +2,7 @@ import { HttpClient, HttpParams } from "@angular/common/http";
 import { Injectable } from "@angular/core";
 import { MatSnackBar } from "@angular/material/snack-bar";
 import { Router } from "@angular/router";
-import { Observable } from "rxjs";
+import { map, Observable } from "rxjs";
 import { Funcionario } from "src/app/models/funcionario.model";
 import { ResponseDataList } from "src/app/models/shared";
 import { environment } from "src/environments/environment";
@@ -55,6 +55,16 @@ export class FuncionarioService {
       environment.baseUrl + this.baseApi,
       { params }
     );
+  }
+
+  listFuncionario(): Observable<Funcionario[]> {
+    const params = new HttpParams().set("limit", "99");
+
+    return this.http
+      .get<ResponseDataList<Funcionario>>(environment.baseUrl + this.baseApi, {
+        params,
+      })
+      .pipe(map((resp) => resp.items));
   }
 
   showMessage(msg: string, IsError: boolean = false): void {

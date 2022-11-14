@@ -1,11 +1,12 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
+import { HttpClient, HttpParams, HttpResponse } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { MatSnackBar } from '@angular/material/snack-bar';
-import { Observable, map } from 'rxjs';
+import { Router } from "@angular/router";
+import { hasUncaughtExceptionCaptureCallback } from 'process';
+import { catchError, map, Observable } from 'rxjs';
 import { Organizacao } from 'src/app/models/organizacao.model';
 import { ResponseDataList } from 'src/app/models/shared';
 import { environment } from 'src/environments/environment';
-import { Router } from "@angular/router";
 
 
 
@@ -37,10 +38,15 @@ export class OrganizacaoService {
     );
   }
 
-  delete(id: number): Observable<boolean> {
+  delete(id: number): Observable<boolean | unknown> {
     return this.http.delete<boolean>(
       environment.baseUrl + this.baseApi + `/${id}`
-    );
+    ).pipe(
+      catchError((err) =>{
+        this.showMessage('Essa organização possuí dependências internas, portanto não pode ser excluída.\nRecomenda-se alterar seu status para Inativa.', true);
+        return err;
+      })
+    )
   }
 
   list(

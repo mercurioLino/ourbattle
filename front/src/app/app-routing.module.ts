@@ -1,3 +1,5 @@
+import { TorneioInsertJogadorRoleJogadorComponent } from './pages/torneio/torneio-insert-jogador-role-jogador/torneio-insert-jogador-role-jogador.component';
+import { TorneioInsertEquipeComponent } from './pages/torneio/torneio-insert-equipe/torneio-insert-equipe.component';
 import { RoleGuard } from './guards/role.guard';
 import { PageComponent } from './layout/page/page.component';
 import { JogadorCreateComponent } from './pages/jogador/jogador-create/jogador-create.component';
@@ -30,6 +32,10 @@ import { SuporteEditComponent } from './pages/suporte/suporte-edit/suporte-edit.
 import { PerfilCreateComponent } from './pages/perfil/perfil-create/perfil-create.component';
 import { PerfilEditComponent } from './pages/perfil/perfil-edit/perfil-edit.component';
 import { PerfilComponent } from './pages/perfil/perfil/perfil.component';
+import { EquipeInsertComponent } from './pages/equipe/equipe-insert/equipe-insert.component';
+import { TorneioInsertJogadorComponent } from './pages/torneio/torneio-insert-jogador/torneio-insert-jogador.component';
+import { EquipeInsertRoleJogadorComponent } from './pages/equipe/equipe-insert-role-jogador/equipe-insert-role-jogador.component';
+import { TorneioInsertEquipeRoleJogadorComponent } from './pages/torneio/torneio-insert-equipe-role-jogador/torneio-insert-equipe-role-jogador.component';
 
 const routes: Routes = [
   {path:'login', component: LoginComponent},
@@ -46,7 +52,8 @@ const routes: Routes = [
         {path: '', component: EquipeComponent},
         {path:'create', component: EquipeCreateComponent,canActivate: [RoleGuard], data: {role: [Role.Admin, Role.Jogador]}},
         {path: ':id/edit', component: EquipeEditComponent, canActivate: [RoleGuard], data: {role: [Role.Admin, Role.Jogador]}},
-
+        {path:'inserir-jogador', component: EquipeInsertComponent, canActivate: [RoleGuard], data: {role: [Role.Admin]}},
+        {path:'inserir-jogador-role-jogador', component: EquipeInsertRoleJogadorComponent, canActivate: [RoleGuard], data: {role: [Role.Admin, Role.Jogador]}},
     ]},
   
     {path: 'jogador',  children
@@ -75,7 +82,10 @@ const routes: Routes = [
       {path: '', component: TorneiosComponent},
       {path: 'create', component: TorneioCreateComponent, canActivate: [RoleGuard], data: {role: [Role.Admin, Role.Organizacao]}},
       {path: ':id/edit', component: TorneioEditComponent, canActivate: [RoleGuard], data: {role: [Role.Admin, Role.Organizacao]}},
-
+      {path:'inserir-jogador', component: TorneioInsertJogadorComponent,canActivate: [RoleGuard], data: {role: [Role.Admin]}},
+      {path:'inserir-equipe', component: TorneioInsertEquipeComponent,canActivate: [RoleGuard], data: {role: [Role.Admin, Role.Organizacao]}},
+      {path:'inserir-jogador-role-jogador', component: TorneioInsertJogadorRoleJogadorComponent, canActivate: [RoleGuard], data: {role: [Role.Admin, Role.Jogador]}},
+      {path:'inserir-equipe-role-jogador', component: TorneioInsertEquipeRoleJogadorComponent, canActivate: [RoleGuard], data: {role: [Role.Admin, Role.Jogador]}},
     ]},
   
     {path: 'organizacao', children

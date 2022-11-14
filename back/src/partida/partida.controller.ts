@@ -41,12 +41,23 @@ export class PartidaController {
     return this.partidaIndividualService.create(createPartidaDto);
   }
 
-  @Post('individual/:id/declarar-vencedor')
-  declararVencedor(
+  @Post(':id/declarar-jogador-vencedor')
+  declararJogadorVencedor(
     @Param('id', ParseIntPipe) id: number,
     @Body() relationEntityDto: RelationEntityDto,
   ) {
     return this.partidaIndividualService.declararVencedor(
+      id,
+      relationEntityDto,
+    );
+  }
+
+  @Post(':id/declarar-equipe-vencedora')
+  declararEquipeVencedora(
+    @Param('id', ParseIntPipe) id: number,
+    @Body() relationEntityDto: RelationEntityDto,
+  ) {
+    return this.partidaEquipeService.declararVencedor(
       id,
       relationEntityDto,
     );

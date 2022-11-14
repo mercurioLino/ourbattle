@@ -50,7 +50,7 @@ export class EquipeController {
   }
 
   @Post(':id/add-jogador')
-  @Roles(Role.Admin, Role.Organizacao, Role.Funcionario)
+  @Roles(Role.Admin, Role.Jogador)
   addJogador(@Param('id', ParseIntPipe) id: number, @Body() relationEntityDto: RelationEntityDto){
     return this.equipeService.addJogador(id, relationEntityDto)
   }

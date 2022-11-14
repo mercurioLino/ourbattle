@@ -6,9 +6,9 @@ import {
   paginate,
   Pagination,
 } from 'nestjs-typeorm-paginate';
-import { Funcionario } from 'src/usuario/entities/funcionario.entity';
 import { RelationEntityDto } from 'src/shared/dto/relation-entity.dto';
-import { FindOptionsWhere, ILike, Repository } from 'typeorm';
+import { Funcionario } from 'src/usuario/entities/funcionario.entity';
+import { FindManyOptions, ILike, Repository } from 'typeorm';
 import { CreateOrganizacaoDto } from '../dto/create-organizacao.dto';
 import { UpdateOrganizacaoDto } from '../dto/update-organizacao.dto';
 import { Organizacao } from '../entities/organizacao.entity';
@@ -26,7 +26,7 @@ export class OrganizacaoService {
   ): Promise<Organizacao> {
     const organizacao: Organizacao =
       this.repository.create(createOrganizacaoDto);
-    organizacao.ativa = true;
+    organizacao.status = 'Ativa';
     organizacao.role = 'organizacao';
     return this.repository.save(organizacao);
   }
@@ -45,13 +45,15 @@ export class OrganizacaoService {
     options: IPaginationOptions,
     search?: string,
   ): Promise<Pagination<Organizacao>> {
-    const where: FindOptionsWhere<Organizacao> = {};
-
+    const where: FindManyOptions<Organizacao> = {};
     if (search) {
-      where.email = ILike(`%${search}%`);
+      where.where = [
+        { razaoSocial: ILike(`%${search}%`) },
+        { cnpj: ILike(`%${search}%`) },
+      ];
     }
 
-    return paginate<Organizacao>(this.repository, options, { where });
+    return paginate<Organizacao>(this.repository, options, where);
   }
 
   async update(

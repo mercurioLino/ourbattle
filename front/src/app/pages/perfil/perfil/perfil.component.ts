@@ -38,7 +38,7 @@ export class PerfilComponent implements OnInit, AfterViewInit, OnDestroy {
   data: Perfil[] = [];
   resultsLength: number = 0;
   subscriptions: Subscription[] = [];
-  displayedColumns: string[] = ["id", "nickname", "actions"];
+  displayedColumns: string[] = ["id", "nickname", "jogo", "jogador",  "actions"];
   form!: FormGroup;
   refresh: Subject<boolean> = new Subject();
 

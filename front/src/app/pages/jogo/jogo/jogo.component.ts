@@ -38,7 +38,7 @@ export class JogoComponent implements OnInit, AfterViewInit, OnDestroy {
   data: Jogo[] = [];
   resultsLength: number = 0;
   subscriptions: Subscription[] = [];
-  displayedColumns: string[] = ["id", "nome", "actions"];
+  displayedColumns: string[] = ["id", "nome", "categoria", "regras", "actions"];
   form!: FormGroup;
   refresh: Subject<boolean> = new Subject();
 

@@ -1,8 +1,11 @@
+
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { catchError } from 'rxjs';
+import { Jogador } from 'src/app/models/jogador.model';
 import { Jogo } from 'src/app/models/jogo.model';
+import { JogadorService } from '../../jogador/jogador.service';
 import { JogoService } from '../jogo.service';
 
 @Component({
@@ -21,6 +24,7 @@ export class JogoCreateComponent implements OnInit {
   ) { }
 
   ngOnInit() {
+
     this.form = this.fb.group({
       nome: [null, [Validators.required]],
       categoria: [null, [Validators.required]],

@@ -26,6 +26,10 @@ export class FuncionarioEditComponent implements OnInit {
 
     this.form = this.fb.group({
       nome: [null, [Validators.required]],
+      email: [null, [Validators.required]],
+      endereco: [null, [Validators.required]],
+      dataNascimento: [null, [Validators.required]],
+      cpf: [null, [Validators.required]],
     });
 
     this.funcionarioService.findById(this.id).subscribe((resp) => {

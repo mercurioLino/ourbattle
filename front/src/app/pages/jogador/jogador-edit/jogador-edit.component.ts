@@ -26,6 +26,8 @@ export class JogadorEditComponent implements OnInit {
 
     this.form = this.fb.group({
       nome: [null, [Validators.required]],
+      email: [null, [Validators.required]],
+      nickname: [null, [Validators.required]],
     });
 
     this.jogadorService.findById(this.id).subscribe((resp) => {

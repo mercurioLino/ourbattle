@@ -26,6 +26,10 @@ export class TorneioEditComponent implements OnInit {
 
     this.form = this.fb.group({
       nome: [null, [Validators.required]],
+      data: [null, [Validators.required]],
+      hora: [null, [Validators.required]],
+      regras: [null, [Validators.required]],
+      premiacao: [null, [Validators.required]]
     });
 
     this.torneioService.findById(this.id).subscribe((resp) => {

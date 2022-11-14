@@ -6,7 +6,7 @@ import {
   paginate,
   Pagination,
 } from 'nestjs-typeorm-paginate';
-import { FindOptionsWhere, ILike, Repository } from 'typeorm';
+import { FindManyOptions, ILike, Repository } from 'typeorm';
 import { CreateAtendimentoDto } from './dto/create-atendimento.dto';
 import { UpdateAtendimentoDto } from './dto/update-atendimento.dto';
 import { Atendimento } from './entities/atendimento.entity';
@@ -29,13 +29,16 @@ export class AtendimentoService {
     options: IPaginationOptions,
     search?: string,
   ): Promise<Pagination<Atendimento>> {
-    const where: FindOptionsWhere<Atendimento> = {};
-
+    const where: FindManyOptions<Atendimento> = {};
     if (search) {
-      where.status = ILike(`%${search}%`);
+      where.where = [
+        { descricao: ILike(`%${search}%`) },
+        { jogador: ILike(`%${search}%`) },
+        { funcionario: ILike(`%${search}%`) },
+      ];
     }
 
-    return paginate<Atendimento>(this.repository, options, { where });
+    return paginate<Atendimento>(this.repository, options, where);
   }
 
   async findOne(id: number): Promise<Atendimento> {

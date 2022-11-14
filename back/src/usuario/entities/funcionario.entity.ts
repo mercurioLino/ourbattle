@@ -1,10 +1,5 @@
-import { Atendimento } from 'src/atendimento/entities/atendimento.entity';
 import { Usuario } from 'src/usuario/entities/usuario.entity';
-import {
-    ChildEntity,
-    Column, ManyToOne,
-    OneToMany
-} from 'typeorm';
+import { ChildEntity, Column, ManyToOne } from 'typeorm';
 import { Organizacao } from './organizacao.entity';
 
 @ChildEntity()
@@ -22,13 +17,7 @@ export class Funcionario extends Usuario {
   dataNascimento: string;
 
   @ManyToOne(() => Organizacao, (organizacao) => organizacao.funcionarios, {
-    eager: true
-  })
-  organizacao: Organizacao;
-
-  @OneToMany(() => Atendimento, (atendimento) => atendimento.funcionario, {
-    cascade: true,
     eager: true,
   })
-  atendimentos: Atendimento[];
+  organizacao: Organizacao;
 }

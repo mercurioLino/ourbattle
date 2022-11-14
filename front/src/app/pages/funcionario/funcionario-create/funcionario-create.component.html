@@ -68,6 +68,22 @@
         formControlName="dataNascimento"
       />
     </mat-form-field>
+
+    <br />
+    <mat-form-field appearance="outline">
+      <mat-label>Organização</mat-label>
+      <mat-select name="organizacao" formControlName="organizacao">
+        <mat-option
+          *ngFor="let organizacao of organizacoes"
+          [value]="organizacao"
+        >
+          {{ organizacao.razaoSocial }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('organizacao')?.hasError('required')">
+        Campo obrigatório
+      </mat-error>
+    </mat-form-field>
   </form>
 
   <button mat-raised-button (click)="cancel()" class="cancelar">

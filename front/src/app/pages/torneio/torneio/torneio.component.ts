@@ -23,7 +23,7 @@ export class TorneiosComponent implements OnInit, AfterViewInit, OnDestroy {
   data: Torneio[] = [];
   resultsLength: number = 0;
   subscriptions: Subscription[] = [];
-  displayedColumns: string[] = ["id", "nome","actions"];
+  displayedColumns: string[] = ["id", "nome", "jogo","organizacao", "data",  "actions"];
   form!: FormGroup;
   refresh: Subject<boolean> = new Subject();
 
@@ -101,5 +101,21 @@ export class TorneiosComponent implements OnInit, AfterViewInit, OnDestroy {
 
   navigateToTorneioCreate(): void {
     this.router.navigate(['torneio/create']);
+  }
+
+  navigateToInsertJogadorTorneio(): void {
+    this.router.navigate(['torneio/inserir-jogador']);
+  }
+
+  navigateToInsertEquipeTorneio(): void {
+    this.router.navigate(['torneio/inserir-equipe']);
+  }
+
+  navigateToInsertJogadorTorneioRoleJogador(): void {
+    this.router.navigate(['torneio/inserir-jogador-role-jogador']);
+  }
+
+  navigateToInsertEquipeTorneioRoleJogador(): void {
+    this.router.navigate(['torneio/inserir-equipe-role-jogador']);
   }
 }

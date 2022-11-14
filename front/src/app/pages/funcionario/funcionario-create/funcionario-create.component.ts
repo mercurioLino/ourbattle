@@ -3,6 +3,8 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { catchError } from 'rxjs';
 import { Funcionario } from 'src/app/models/funcionario.model';
+import { Organizacao } from 'src/app/models/organizacao.model';
+import { OrganizacaoService } from '../../organizacao/organizacao.service';
 import { FuncionarioService } from '../funcionario.service';
 
 
@@ -13,19 +15,30 @@ import { FuncionarioService } from '../funcionario.service';
 })
 export class FuncionarioCreateComponent implements OnInit {
   form: FormGroup = new FormGroup({});
+  organizacoes: Organizacao[] = [];
   constructor(
     private readonly router:Router,
     private readonly funcionarioService: FuncionarioService,
+    private readonly organizacaoService: OrganizacaoService,
     private readonly fb: FormBuilder
 
   ) { }
 
   ngOnInit(): void {
+
+    this.organizacaoService.listOrganizacao().subscribe((resp) => {
+      this.organizacoes = resp;
+      this.organizacoes.sort((a: Organizacao, b: Organizacao) =>
+        a.razaoSocial.localeCompare(b.razaoSocial)
+      );
+    });
+
     this.form = this.fb.group({
       nome: [null, [Validators.required]],
       cpf: [null, [Validators.required]],
       email: [null, [Validators.required]],
       password: [null, [Validators.required]],
+      organizacao: [],
       dataNascimento: [],
       endereco: []
     });

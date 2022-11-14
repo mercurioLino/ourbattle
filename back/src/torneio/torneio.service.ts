@@ -1,13 +1,13 @@
-import { UpdateStatusTorneioDto } from './dto/update-status-torneio.dto';
 import { RecordNotFoundException } from '@exceptions';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import {
   IPaginationOptions,
-  Pagination,
   paginate,
+  Pagination,
 } from 'nestjs-typeorm-paginate';
-import { FindOptionsWhere, ILike, Repository } from 'typeorm';
+import { FindManyOptions, ILike, Repository } from 'typeorm';
+import { UpdateStatusTorneioDto } from './dto/update-status-torneio.dto';
 import { Torneio } from './entities/torneio.entity';
 
 @Injectable()
@@ -20,13 +20,16 @@ export class TorneioService {
     options: IPaginationOptions,
     search?: string,
   ): Promise<Pagination<Torneio>> {
-    const where: FindOptionsWhere<Torneio> = {};
-
+    const where: FindManyOptions<Torneio> = {};
     if (search) {
-      where.jogo = ILike(`%${search}%`);
+      where.where = [
+        { nome: ILike(`%${search}%`) },
+        { organizacao: ILike(`%${search}%`) },
+        { data: ILike(`%${search}%`) },
+      ];
     }
 
-    return paginate<Torneio>(this.repository, options, { where });
+    return paginate<Torneio>(this.repository, options, where);
   }
 
   async findOne(id: number) {

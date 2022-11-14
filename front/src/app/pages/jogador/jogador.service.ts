@@ -1,25 +1,27 @@
-import { HttpClient, HttpParams } from '@angular/common/http';
-import { Injectable } from '@angular/core';
-import { MatSnackBar } from '@angular/material/snack-bar';
-import { map, Observable } from 'rxjs';
-import { Jogador } from 'src/app/models/jogador.model';
-import { ResponseDataList } from 'src/app/models/shared';
-import { environment } from 'src/environments/environment';
+import { HttpClient, HttpParams } from "@angular/common/http";
+import { Injectable } from "@angular/core";
+import { MatSnackBar } from "@angular/material/snack-bar";
+import { map, Observable } from "rxjs";
+import { Jogador } from "src/app/models/jogador.model";
+import { ResponseDataList } from "src/app/models/shared";
+import { environment } from "src/environments/environment";
 
-@Injectable(
-  {providedIn: 'root'}
-)
+@Injectable({ providedIn: "root" })
 export class JogadorService {
-private baseApi: string = '/jogador';
-constructor(private readonly snackBar: MatSnackBar,
-  private readonly http: HttpClient) { }
+  private baseApi: string = "/jogador";
+  constructor(
+    private readonly snackBar: MatSnackBar,
+    private readonly http: HttpClient
+  ) {}
 
   create(jogador: Jogador): Observable<Jogador> {
     return this.http.post<Jogador>(environment.baseUrl + this.baseApi, jogador);
   }
 
-  findById(id: number): Observable<Jogador> {
-    return this.http.get<Jogador>(environment.baseUrl + this.baseApi + "/" + id);
+  findById(id: number): Observable<Jogador>{
+    return this.http.get<Jogador>(
+      environment.baseUrl + this.baseApi + "/" + id
+    );
   }
 
   update(id: number, jogador: Jogador): Observable<Jogador> {
@@ -50,6 +52,16 @@ constructor(private readonly snackBar: MatSnackBar,
       environment.baseUrl + this.baseApi,
       { params }
     );
+  }
+
+  listJogador(): Observable<Jogador[]> {
+    const params = new HttpParams().set("limit", "99");
+
+    return this.http
+      .get<ResponseDataList<Jogador>>(environment.baseUrl + this.baseApi, {
+        params,
+      })
+      .pipe(map((resp) => resp.items));
   }
 
   showMessage(msg: string, IsError: boolean = false): void {

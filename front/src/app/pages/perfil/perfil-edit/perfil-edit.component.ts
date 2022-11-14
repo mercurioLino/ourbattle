@@ -25,7 +25,8 @@ export class PerfilEditComponent implements OnInit {
     this.id = +this.route.snapshot.paramMap.get("id")!;
 
     this.form = this.fb.group({
-      nome: [null, [Validators.required]],
+      nickname: [null, [Validators.required]],
+      elo: [null, [Validators.required]]
     });
 
     this.perfilService.findById(this.id).subscribe((resp) => {

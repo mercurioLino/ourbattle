@@ -14,11 +14,13 @@ export class JogadorPerfilJogo {
     @Column()
     elo: string;
 
-    @ManyToOne(() => Jogo, (jogo) => jogo.perfis)
+    @ManyToOne(() => Jogo, {
+        eager:true
+    })
     jogo: Jogo;
 
-    @ManyToOne(() => Jogador, (jogador) => jogador.perfis, {
-        onDelete: "CASCADE"
+    @ManyToOne(() => Jogador, {
+        eager: true
     })
     jogador: Jogador;
 }

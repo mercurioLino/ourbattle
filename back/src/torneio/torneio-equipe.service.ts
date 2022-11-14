@@ -22,6 +22,8 @@ export class TorneioEquipeService {
 
   create(createTorneioEquipeDto: CreateTorneioEquipeDto) {
     const torneioEquipe: TorneioEquipe = this.repository.create(createTorneioEquipeDto);
+    torneioEquipe.jogo = createTorneioEquipeDto.jogo;
+    torneioEquipe.qtdParticipantes = 16;
     return this.repository.save(torneioEquipe);
   }
 

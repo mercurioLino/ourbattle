@@ -8,8 +8,8 @@ import { Roles } from 'src/shared/dto/decorator/roles.decorator';
 import { Role } from 'src/enums/role.enum';
 import { IsPublic } from 'src/shared/dto/decorator';
 
-@ApiTags('Jogador-Pefil-Jogo')
-@Controller('jogador-perfil-jogo')
+@ApiTags('Perfil')
+@Controller('perfil')
 @UseGuards(RolesGuard)
 export class JogadorPerfilJogoController {
   constructor(private readonly jogadorPerfilJogoService: JogadorPerfilJogoService) {}

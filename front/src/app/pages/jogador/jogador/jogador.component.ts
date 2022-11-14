@@ -22,7 +22,7 @@ export class JogadorComponent implements OnInit, AfterViewInit, OnDestroy {
   data: Jogador[] = [];
   resultsLength: number = 0;
   subscriptions: Subscription[] = [];
-  displayedColumns: string[] = ["id", "nome", "pontuacao", "actions"];
+  displayedColumns: string[] = ["id", "nome", "pontuacao", "jogo", "actions"];
   form!: FormGroup;
   refresh: Subject<boolean> = new Subject();
 

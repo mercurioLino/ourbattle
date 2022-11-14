@@ -14,8 +14,7 @@ import { PartidaIndividual } from './entities/partida-individual.entity';
 @Injectable()
 export class PartidaIndividualService {
   constructor(
-    @InjectRepository(PartidaIndividual)
-    private repository: Repository<PartidaIndividual>,
+    @InjectRepository(PartidaIndividual) private repository: Repository<PartidaIndividual>,
     @InjectRepository(Jogador) private repositoryJogador: Repository<Jogador>,
   ) {}
 

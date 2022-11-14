@@ -2,11 +2,9 @@ import { RecordNotFoundException } from '@exceptions';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import {
-  IPaginationOptions,
-  Pagination,
-  paginate,
+  IPaginationOptions, paginate, Pagination
 } from 'nestjs-typeorm-paginate';
-import { FindOptionsWhere, ILike, Repository } from 'typeorm';
+import { FindManyOptions, ILike, Repository } from 'typeorm';
 import { CreateJogadorPerfilJogoDto } from './dto/create-jogador-perfil-jogo.dto';
 import { UpdateJogadorPerfilJogoDto } from './dto/update-jogador-perfil-jogo.dto';
 import { JogadorPerfilJogo } from './entities/jogador-perfil-jogo.entity';
@@ -29,13 +27,15 @@ export class JogadorPerfilJogoService {
     options: IPaginationOptions,
     search?: string,
   ): Promise<Pagination<JogadorPerfilJogo>> {
-    const where: FindOptionsWhere<JogadorPerfilJogo> = {};
-
+    const where: FindManyOptions<JogadorPerfilJogo> = {};
     if (search) {
-      where.jogo = ILike(`%${search}%`);
+      where.where = [
+        { nickname: ILike(`%${search}%`) },
+        { jogo: ILike(`%${search}%`) },
+      ];
     }
 
-    return paginate<JogadorPerfilJogo>(this.repository, options, { where });
+    return paginate<JogadorPerfilJogo>(this.repository, options, where);
   }
 
   async findOne(id: number) {

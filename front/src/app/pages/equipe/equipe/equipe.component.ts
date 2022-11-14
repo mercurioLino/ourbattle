@@ -38,7 +38,7 @@ export class EquipeComponent implements OnInit, AfterViewInit, OnDestroy {
   data: Equipe[] = [];
   resultsLength: number = 0;
   subscriptions: Subscription[] = [];
-  displayedColumns: string[] = ["id", "nome", "actions"];
+  displayedColumns: string[] = ["id", "nome", "pontuacao", "actions"];
   form!: FormGroup;
   refresh: Subject<boolean> = new Subject();
 
@@ -99,6 +99,14 @@ export class EquipeComponent implements OnInit, AfterViewInit, OnDestroy {
 
   navigateToEquipeCreate(): void {
     this.router.navigate(["equipe/create"]);
+  }
+
+  navigateToInserirJogadorEquipe(): void {
+    this.router.navigate(["equipe/inserir-jogador"]);
+  }
+
+  navigateToInserirJogadorEquipeRoleJogador(): void {
+    this.router.navigate(["equipe/inserir-jogador-role-jogador/"]);
   }
 
   checkRole(roles: string[]): boolean {

@@ -62,7 +62,14 @@ import { SuporteDeleteComponent } from './pages/suporte/suporte-delete/suporte-d
 import { PerfilComponent } from './pages/perfil/perfil/perfil.component';
 import { PerfilCreateComponent } from './pages/perfil/perfil-create/perfil-create.component';
 import { PerfilEditComponent } from './pages/perfil/perfil-edit/perfil-edit.component';
-import { PerfilDeleteComponent } from './pages/perfil/perfil-delete/perfil-delete.component'
+import { PerfilDeleteComponent } from './pages/perfil/perfil-delete/perfil-delete.component';
+import { EquipeInsertComponent } from './pages/equipe/equipe-insert/equipe-insert.component';
+import { TorneioInsertJogadorComponent } from './pages/torneio/torneio-insert-jogador/torneio-insert-jogador.component';
+import { TorneioInsertEquipeComponent } from './pages/torneio/torneio-insert-equipe/torneio-insert-equipe.component';
+import { EquipeInsertRoleJogadorComponent } from './pages/equipe/equipe-insert-role-jogador/equipe-insert-role-jogador.component';
+import { TorneioInsertJogadorRoleJogadorComponent } from './pages/torneio/torneio-insert-jogador-role-jogador/torneio-insert-jogador-role-jogador.component';
+import { TorneioInsertEquipeRoleJogadorComponent } from './pages/torneio/torneio-insert-equipe-role-jogador/torneio-insert-equipe-role-jogador.component';
+import { PerfilCreateRoleJogadorComponent } from './pages/perfil/perfil-create-role-jogador/perfil-create-role-jogador.component'
 
 
 
@@ -91,7 +98,7 @@ import { PerfilDeleteComponent } from './pages/perfil/perfil-delete/perfil-delet
     PageComponent, 
     LoginComponent, 
     SuporteComponent, 
-    SuporteCreateComponent, EquipeEditComponent, EquipeDeleteComponent, FuncionarioEditComponent, FuncionarioDeleteComponent, TorneioEditComponent, TorneioDeleteComponent, JogadorEditComponent, JogadorDeleteComponent, JogoEditComponent, JogoDeleteComponent, OrganizacaoEditComponent, OrganizacaoDeleteComponent, SuporteEditComponent, SuporteDeleteComponent, PerfilComponent, PerfilCreateComponent, PerfilEditComponent, PerfilDeleteComponent, 
+    SuporteCreateComponent, EquipeEditComponent, EquipeDeleteComponent, FuncionarioEditComponent, FuncionarioDeleteComponent, TorneioEditComponent, TorneioDeleteComponent, JogadorEditComponent, JogadorDeleteComponent, JogoEditComponent, JogoDeleteComponent, OrganizacaoEditComponent, OrganizacaoDeleteComponent, SuporteEditComponent, SuporteDeleteComponent, PerfilComponent, PerfilCreateComponent, PerfilEditComponent, PerfilDeleteComponent, EquipeInsertComponent, TorneioInsertJogadorComponent, TorneioInsertEquipeComponent, EquipeInsertRoleJogadorComponent, TorneioInsertJogadorRoleJogadorComponent, TorneioInsertEquipeRoleJogadorComponent, PerfilCreateRoleJogadorComponent, 
   ],
   imports: [
     MatDialogModule,

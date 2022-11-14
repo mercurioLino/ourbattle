@@ -7,7 +7,7 @@ import { AtendimentoService } from './atendimento.service';
 import { CreateAtendimentoDto } from './dto/create-atendimento.dto';
 import { UpdateAtendimentoDto } from './dto/update-atendimento.dto';
 
-@ApiTags('Atendimento')
+@ApiTags('Suporte')
 @Controller('suporte')
 @UseGuards(RolesGuard)
 export class AtendimentoController {

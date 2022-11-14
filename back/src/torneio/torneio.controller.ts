@@ -43,7 +43,7 @@ export class TorneioController {
   }
 
   @Post(':id/add-jogador')
-  @Roles(Role.Admin, Role.Funcionario, Role.Organizacao)
+  @Roles(Role.Admin, Role.Jogador)
   addJogador(
     @Param('id', ParseIntPipe) id: number,
     @Body() relationEntityDto: RelationEntityDto,
@@ -52,7 +52,7 @@ export class TorneioController {
   }
 
   @Post(':id/add-equipe')
-  @Roles(Role.Admin, Role.Funcionario, Role.Organizacao)
+  @Roles(Role.Admin, Role.Jogador)
   addEquipe(
     @Param('id', ParseIntPipe) id: number,
     @Body() relationEntityDto: RelationEntityDto,

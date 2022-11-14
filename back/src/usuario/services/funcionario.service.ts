@@ -3,10 +3,10 @@ import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import {
   IPaginationOptions,
-  Pagination,
   paginate,
+  Pagination,
 } from 'nestjs-typeorm-paginate';
-import { FindOptionsWhere, ILike, Repository } from 'typeorm';
+import { FindManyOptions, ILike, Repository } from 'typeorm';
 import { CreateFuncionarioDto } from '../dto/create-funcionario.dto';
 import { UpdateFuncionarioDto } from '../dto/update-funcionario.dto';
 import { Funcionario } from '../entities/funcionario.entity';
@@ -40,13 +40,15 @@ export class FuncionarioService {
     options: IPaginationOptions,
     search?: string,
   ): Promise<Pagination<Funcionario>> {
-    const where: FindOptionsWhere<Funcionario> = {};
-
+    const where: FindManyOptions<Funcionario> = {};
     if (search) {
-      where.organizacao = ILike(`%${search}%`);
+      where.where = [
+        { nome: ILike(`%${search}%`) },
+        { organizacao: ILike(`%${search}%`) },
+      ];
     }
 
-    return paginate<Funcionario>(this.repository, options, { where });
+    return paginate<Funcionario>(this.repository, options, where);
   }
 
   async update(

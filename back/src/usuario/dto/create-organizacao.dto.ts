@@ -14,6 +14,6 @@ export class CreateOrganizacaoDto extends CreateUsuarioDto{
 
     @IsString()
     @IsOptional()
-    @ApiProperty({example:'Lula 2022 LTDA'})
+    @ApiProperty({example:'Lula 2022'})
     nomeFantasia: string;
 }

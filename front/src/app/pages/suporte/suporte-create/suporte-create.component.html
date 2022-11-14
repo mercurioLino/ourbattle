@@ -1,17 +1,49 @@
 <mat-card>
-    <mat-card-title>Solicitar Suporte</mat-card-title>
-  
-      <form [formGroup]="form">
-        <mat-form-field appearance="outline" style="width: 100%;">
-          <mat-label style="color: white;">
-            Descrição do Problema
-          </mat-label>
-          <input matInput name="descricao" placeholder="Descreva aqui seu problema" style="color: rgb(255, 255, 255);" formControlName="descricao"/>
-        </mat-form-field>
-  
-      </form>
-  
-    <button mat-raised-button (click)="cancel()" class="cancelar">
-      Cancelar </button>
-      <button mat-raised-button (click)="save()">Cadastrar</button>
-  </mat-card>
+  <mat-card-title>Solicitar Suporte</mat-card-title>
+
+  <form [formGroup]="form">
+    <mat-form-field appearance="outline" style="width: 100%">
+      <mat-label style="color: white"> Descrição do Problema </mat-label>
+      <input
+        matInput
+        name="descricao"
+        placeholder="Descreva aqui seu problema"
+        style="color: rgb(255, 255, 255)"
+        formControlName="descricao"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Jogador</mat-label>
+      <mat-select name="jogador" formControlName="jogador">
+        <mat-option *ngFor="let jogador of jogadores" [value]="jogador">
+          {{ jogador.nickname }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('jogador')?.hasError('required')">
+        Campo obrigatório
+      </mat-error>
+    </mat-form-field>
+
+    <br />
+    <mat-form-field appearance="outline">
+      <mat-label>Funcionário</mat-label>
+      <mat-select name="funcionario" formControlName="funcionario">
+        <mat-option
+          *ngFor="let funcionario of funcionarios"
+          [value]="funcionario"
+        >
+          {{ funcionario.nome }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('funcionario')?.hasError('required')">
+        Campo obrigatório
+      </mat-error>
+    </mat-form-field>
+  </form>
+
+  <button mat-raised-button (click)="cancel()" class="cancelar">
+    Cancelar
+  </button>
+  <button mat-raised-button (click)="save()">Cadastrar</button>
+</mat-card>

@@ -25,6 +25,9 @@ export class OrganizacaoEditComponent implements OnInit {
 
     this.form = this.fb.group({
       razaoSocial: [null, [Validators.required]],
+      cnpj: [null, [Validators.required]],
+      nomeFantasia: [null, [Validators.required]],
+      email: [null, [Validators.required]],
     });
 
     this.organizacaoService.findById(this.id).subscribe((resp) => {
