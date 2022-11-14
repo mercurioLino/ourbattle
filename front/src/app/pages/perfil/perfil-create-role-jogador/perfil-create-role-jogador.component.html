@@ -1,1 +1,57 @@
-<p>perfil-create-role-jogador works!</p>
+<mat-card>
+  <mat-card-title>Cadastrar Novo Perfil</mat-card-title>
+
+  <form [formGroup]="form">
+    <mat-form-field appearance="outline" style="width: 100%">
+      <mat-label style="color: white"> Nickname </mat-label>
+      <input
+        matInput
+        name="nickname"
+        placeholder="Nickname"
+        style="color: rgb(255, 255, 255)"
+        formControlName="nickname"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline" style="width: 100%">
+      <mat-label style="color: white"> Elo </mat-label>
+      <input
+        matInput
+        name="elo"
+        placeholder="Ex: Platina 4"
+        style="color: rgb(255, 255, 255)"
+        formControlName="elo"
+      />
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Jogador</mat-label>
+      <mat-select name="jogador" formControlName="jogador">
+        <mat-option *ngFor="let jogador of jogadores" [value]="jogador">
+          {{ jogador.nickname }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('jogador')?.hasError('required')">
+        Campo obrigatório
+      </mat-error>
+    </mat-form-field>
+
+    <br />
+    <mat-form-field appearance="outline">
+      <mat-label>Jogo</mat-label>
+      <mat-select name="jogo" formControlName="jogo">
+        <mat-option *ngFor="let jogo of jogos" [value]="jogo">
+          {{ jogo.nome }}
+        </mat-option>
+      </mat-select>
+      <mat-error *ngIf="form.get('jogo')?.hasError('required')">
+        Campo obrigatório
+      </mat-error>
+    </mat-form-field>
+  </form>
+
+  <button mat-raised-button (click)="cancel()" class="cancelar">
+    Cancelar
+  </button>
+  <button mat-raised-button (click)="save()">Cadastrar</button>
+</mat-card>

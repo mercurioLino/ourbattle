@@ -1,3 +1,4 @@
+import { PerfilCreateRoleJogadorComponent } from './pages/perfil/perfil-create-role-jogador/perfil-create-role-jogador.component';
 import { TorneioInsertJogadorRoleJogadorComponent } from './pages/torneio/torneio-insert-jogador-role-jogador/torneio-insert-jogador-role-jogador.component';
 import { TorneioInsertEquipeComponent } from './pages/torneio/torneio-insert-equipe/torneio-insert-equipe.component';
 import { RoleGuard } from './guards/role.guard';
@@ -74,6 +75,7 @@ const routes: Routes = [
     :[
       {path: '', component: PerfilComponent},
       {path: 'create', component: PerfilCreateComponent, canActivate: [RoleGuard], data: {role: [Role.Admin, Role.Jogador]}},
+      {path: 'create-role-jogador', component: PerfilCreateRoleJogadorComponent, canActivate: [RoleGuard], data: {role: [Role.Admin, Role.Jogador]}},
       {path: ':id/edit', component: PerfilEditComponent, canActivate: [RoleGuard], data: {role: [Role.Admin, Role.Jogador]}},
     ]},
 
