@@ -20,7 +20,7 @@ export class AtendimentoController {
   }
 
   @Get()
-  @Roles(Role.Admin, Role.Funcionario)
+  @Roles(Role.Admin, Role.Funcionario, Role.Jogador)
   findAll(
     @Query('page', new DefaultValuePipe(1), ParseIntPipe) page = 1,
     @Query('limit', new DefaultValuePipe(10), ParseIntPipe) limit = 10,
