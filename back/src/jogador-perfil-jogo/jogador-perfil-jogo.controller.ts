@@ -37,7 +37,7 @@ export class JogadorPerfilJogoController {
   }
 
   @Patch(':id')
-  @Roles(Role.Admin)
+  @Roles(Role.Admin, Role.Jogador)
   update(@Param('id', ParseIntPipe) id: number, @Body() updateJogadorPerfilJogoDto: UpdateJogadorPerfilJogoDto) {
     return this.jogadorPerfilJogoService.update(id, updateJogadorPerfilJogoDto);
   }

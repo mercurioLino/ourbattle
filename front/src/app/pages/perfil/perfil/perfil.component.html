@@ -16,6 +16,15 @@
   Novo Perfil
 </button>
 
+<button
+  mat-raised-button
+  (click)="navigateToPerfilEditRoleJogador()"
+  class="bt-create"
+  *ngIf="checkRole(['jogador'])"
+>
+  Editar um de seus Perfis
+</button>
+
 <div class="container-table mat-elevation-z4">
   <div [formGroup]="form" >
     <mat-form-field appearance="outline" class="search-input">

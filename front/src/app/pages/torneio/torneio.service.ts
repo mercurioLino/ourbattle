@@ -35,6 +35,16 @@ export class TorneioService {
     );
   }
 
+  listTorneio(): Observable<Torneio[]> {
+    const params = new HttpParams().set("limit", "99");
+
+    return this.http
+      .get<ResponseDataList<Torneio>>(environment.baseUrl + this.baseApi + '', {
+        params,
+      })
+      .pipe(map((resp) => resp.items));
+  }
+
   listTorneioIndividual(): Observable<Torneio[]> {
     const params = new HttpParams().set("limit", "99");
 

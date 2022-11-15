@@ -23,7 +23,7 @@ export class SuporteComponent implements OnInit {
   data: Suporte[] = [];
   resultsLength: number = 0;
   subscriptions: Subscription[] = [];
-  displayedColumns: string[] = ["id", "descricao", "jogador", "funcionario", "actions"];
+  displayedColumns: string[] = ["id", "descricao", "jogador", "organizacao", "actions"];
   form!: FormGroup;
   refresh: Subject<boolean> = new Subject();
 
@@ -84,6 +84,10 @@ export class SuporteComponent implements OnInit {
 
   navigateToSuporteCreate(): void {
     this.router.navigate(["suporte/create"]);
+  }
+
+  navigateToSuporteRoleJogadorCreate(): void {
+    this.router.navigate(["suporte/create-role-jogador"]);
   }
 
   checkRole(roles: string[]): boolean {

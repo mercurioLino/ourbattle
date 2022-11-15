@@ -69,8 +69,17 @@ import { TorneioInsertEquipeComponent } from './pages/torneio/torneio-insert-equ
 import { EquipeInsertRoleJogadorComponent } from './pages/equipe/equipe-insert-role-jogador/equipe-insert-role-jogador.component';
 import { TorneioInsertJogadorRoleJogadorComponent } from './pages/torneio/torneio-insert-jogador-role-jogador/torneio-insert-jogador-role-jogador.component';
 import { TorneioInsertEquipeRoleJogadorComponent } from './pages/torneio/torneio-insert-equipe-role-jogador/torneio-insert-equipe-role-jogador.component';
-import { PerfilCreateRoleJogadorComponent } from './pages/perfil/perfil-create-role-jogador/perfil-create-role-jogador.component'
-
+import { PerfilCreateRoleJogadorComponent } from './pages/perfil/perfil-create-role-jogador/perfil-create-role-jogador.component';
+import { SuporteCreateRoleJogadorComponent } from './pages/suporte/suporte-create-role-jogador/suporte-create-role-jogador.component';
+import { JogadorEditRoleJogadorComponent } from './pages/jogador/jogador-edit-role-jogador/jogador-edit-role-jogador.component';
+import { PerfilEditRoleJogadorComponent } from './pages/perfil/perfil-edit-role-jogador/perfil-edit-role-jogador.component';
+import { EquipeEditRoleJogadorComponent } from './pages/equipe/equipe-edit-role-jogador/equipe-edit-role-jogador.component';
+import { FuncionarioCreateRoleOrganizacaoComponent } from './pages/funcionario/funcionario-create-role-organizacao/funcionario-create-role-organizacao.component';
+import { JogadorCreateOpenComponent } from './pages/jogador/jogador-create-open/jogador-create-open.component';
+import { TorneioEditRoleOrganizacaoComponent } from './pages/torneio/torneio-edit-role-organizacao/torneio-edit-role-organizacao.component';
+import { TorneioCreateRoleOrganizacaoComponent } from './pages/torneio/torneio-create-role-organizacao/torneio-create-role-organizacao.component';
+import { OrganizacaoEditRoleOrganizacaoComponent } from './pages/organizacao/organizacao-edit-role-organizacao/organizacao-edit-role-organizacao.component';
+import { FuncionarioEditRoleOrganizacaoComponent } from './pages/funcionario/funcionario-edit-role-organizacao/funcionario-edit-role-organizacao.component';
 
 
 @NgModule({
@@ -98,7 +107,42 @@ import { PerfilCreateRoleJogadorComponent } from './pages/perfil/perfil-create-r
     PageComponent, 
     LoginComponent, 
     SuporteComponent, 
-    SuporteCreateComponent, EquipeEditComponent, EquipeDeleteComponent, FuncionarioEditComponent, FuncionarioDeleteComponent, TorneioEditComponent, TorneioDeleteComponent, JogadorEditComponent, JogadorDeleteComponent, JogoEditComponent, JogoDeleteComponent, OrganizacaoEditComponent, OrganizacaoDeleteComponent, SuporteEditComponent, SuporteDeleteComponent, PerfilComponent, PerfilCreateComponent, PerfilEditComponent, PerfilDeleteComponent, EquipeInsertComponent, TorneioInsertJogadorComponent, TorneioInsertEquipeComponent, EquipeInsertRoleJogadorComponent, TorneioInsertJogadorRoleJogadorComponent, TorneioInsertEquipeRoleJogadorComponent, PerfilCreateRoleJogadorComponent, 
+    SuporteCreateComponent, 
+    EquipeEditComponent, 
+    EquipeDeleteComponent, 
+    FuncionarioEditComponent, 
+    FuncionarioDeleteComponent, 
+    TorneioEditComponent, 
+    TorneioDeleteComponent, 
+    JogadorEditComponent, 
+    JogadorDeleteComponent, 
+    JogoEditComponent, 
+    JogoDeleteComponent, 
+    OrganizacaoEditComponent, 
+    OrganizacaoDeleteComponent, 
+    SuporteEditComponent, 
+    SuporteDeleteComponent, 
+    PerfilComponent, 
+    PerfilCreateComponent, 
+    PerfilEditComponent, 
+    PerfilDeleteComponent, 
+    EquipeInsertComponent, 
+    TorneioInsertJogadorComponent, 
+    TorneioInsertEquipeComponent, 
+    EquipeInsertRoleJogadorComponent, 
+    TorneioInsertJogadorRoleJogadorComponent, 
+    TorneioInsertEquipeRoleJogadorComponent, 
+    PerfilCreateRoleJogadorComponent, 
+    SuporteCreateRoleJogadorComponent, 
+    JogadorEditRoleJogadorComponent, 
+    PerfilEditRoleJogadorComponent, 
+    EquipeEditRoleJogadorComponent, 
+    FuncionarioCreateRoleOrganizacaoComponent, 
+    JogadorCreateOpenComponent,
+    TorneioEditRoleOrganizacaoComponent, 
+    TorneioCreateRoleOrganizacaoComponent, 
+    OrganizacaoEditRoleOrganizacaoComponent, 
+    FuncionarioEditRoleOrganizacaoComponent, 
   ],
   imports: [
     MatDialogModule,

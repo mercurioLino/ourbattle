@@ -103,6 +103,14 @@ export class TorneiosComponent implements OnInit, AfterViewInit, OnDestroy {
     this.router.navigate(['torneio/create']);
   }
 
+  navigateToTorneioRoleOrganizacaoCreate(): void {
+    this.router.navigate(['torneio/create-role-organizacao']);
+  }
+
+  navigateToTorneioRoleOrganizacaoEdit(): void {
+    this.router.navigate(['torneio/edit-role-organizacao']);
+  }
+
   navigateToInsertJogadorTorneio(): void {
     this.router.navigate(['torneio/inserir-jogador']);
   }

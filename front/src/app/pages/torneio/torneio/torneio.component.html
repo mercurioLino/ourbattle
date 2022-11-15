@@ -2,9 +2,27 @@
   mat-raised-button
   (click)="navigateToTorneioCreate()"
   class="bt-create"
-  *ngIf="checkRole(['admin', 'organizacao'])"
+  *ngIf="checkRole(['admin'])"
 >
   Novo Torneio
+</button>
+
+<button
+  mat-raised-button
+  (click)="navigateToTorneioRoleOrganizacaoCreate()"
+  class="bt-create"
+  *ngIf="checkRole(['organizacao'])"
+>
+  Novo Torneio
+</button>
+
+<button
+  mat-raised-button
+  (click)="navigateToTorneioRoleOrganizacaoEdit()"
+  class="bt-create"
+  *ngIf="checkRole(['organizacao'])"
+>
+  Editar um de seus torneios
 </button>
 
 <button

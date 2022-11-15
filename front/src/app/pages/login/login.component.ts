@@ -51,5 +51,8 @@ export class LoginComponent implements OnInit {
       this.messagesService.error('Há campos inválidos no formulário');
     }
   }
+  navigateToJogadorRegister(): void {
+    this.router.navigate(["jogador/register"]);
+  }
 
 }

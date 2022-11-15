@@ -20,8 +20,7 @@ export class AtendimentoService {
   create(createAtendimentoDto: CreateAtendimentoDto): Promise<Atendimento> {
     const atendimento: Atendimento =
       this.repository.create(createAtendimentoDto);
-    atendimento.feedback = 'Aguardando conclusão';
-    atendimento.status = 'Em aberto';
+    atendimento.status = "Em Aberto";
     return this.repository.save(atendimento);
   }
 

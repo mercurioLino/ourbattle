@@ -24,7 +24,7 @@ export class RoleGuard implements CanActivate, CanActivateChild {
 
   checkRole(route: ActivatedRouteSnapshot): boolean{
     const user = this.authenticationService.getCurrentUserValue()
-    if(user && route.data['role'] && route.data['role'].indexOf(user.role) > -1){
+    if((user && route.data['role'] && route.data['role'].indexOf(user.role) > -1)){
       return true;
     }
     this.router.navigate(['/'])

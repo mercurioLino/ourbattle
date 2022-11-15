@@ -34,7 +34,7 @@ export class JogadorController {
   }
 
   @Get(':id')
-  @Roles(Role.Admin, Role.Funcionario, Role.Organizacao)
+  @IsPublic()
   findOne(@Param('id', ParseIntPipe) id: number) {
     return this.jogadorService.findOne(id);
   }
@@ -46,7 +46,7 @@ export class JogadorController {
   }
 
   @Patch(':id')
-  @Roles(Role.Admin)
+  @Roles(Role.Admin, Role.Jogador)
   update(@Param('id', ParseIntPipe) id: number, @Body() updateJogadorDto: UpdateJogadorDto) {
     return this.jogadorService.update(id, updateJogadorDto);
   }

@@ -97,7 +97,7 @@ export class TorneioController {
   }
 
   @Patch(':id')
-  @Roles(Role.Admin)
+  @Roles(Role.Admin, Role.Organizacao)
   update(
     @Param('id', ParseIntPipe) id: number,
     @Body()

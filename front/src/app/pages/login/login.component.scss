@@ -12,7 +12,7 @@
 }
 
 mat-card{
-    background-color: rgb(78, 3, 107);
+    background-color: rgb(55, 30, 70);
 }
 
 .mat-form-field{
@@ -28,9 +28,23 @@ mat-card-title, mat-card-component{
 }
 
 .button{
-    margin-right: 15px;
+
     display: flex;
     justify-content: end;
+}
+
+.bt-create{
+    margin-right: 18px;
+}
+
+
+
+#bt-cadastro:hover{
+   
+    scale: 1.02;
+}
+.bt-create:hover{
+    scale:1.02;
 }
 
 .logo{
@@ -40,3 +54,4 @@ mat-card-title, mat-card-component{
 .logo:hover{
     scale: 1.5;
 }
+

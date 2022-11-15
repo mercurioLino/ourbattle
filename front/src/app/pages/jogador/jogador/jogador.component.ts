@@ -85,6 +85,10 @@ export class JogadorComponent implements OnInit, AfterViewInit, OnDestroy {
     this.router.navigate(["jogador/create"]);
   }
 
+  navigateToJogadorEditRoleJogador(): void {
+    this.router.navigate(["jogador/edit-role-jogador"]);
+  }
+
   checkRole(roles: string[]): boolean {
     return !!this.user && roles.indexOf(this.user.role) > -1;
   }

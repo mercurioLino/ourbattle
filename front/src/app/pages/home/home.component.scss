@@ -11,6 +11,8 @@ mat-card{
     line-height: 1.2;
   }
 
+
+
   .subtitle{
     font-size: 1.1rem;
     font-weight: 300;
@@ -19,5 +21,19 @@ mat-card{
   }
 }
 .mat2{
-  margin-top: 20px;
+  margin-top: 10px;
+}
+
+.vp-center {
+  display: flex;
+  justify-content: center;
+}
+
+
+
+.vp-center {
+  display: flex;
+  align-items: flex-start!important;
+
+
 }

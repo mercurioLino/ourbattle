@@ -105,6 +105,10 @@ export class PerfilComponent implements OnInit, AfterViewInit, OnDestroy {
     this.router.navigate(["perfil/create-role-jogador"]);
   }
 
+  navigateToPerfilEditRoleJogador(): void {
+    this.router.navigate(["perfil/edit-role-jogador"]);
+  }
+
   checkRole(roles: string[]): boolean {
     return !!this.user && roles.indexOf(this.user.role) > -1;
   }

@@ -40,7 +40,7 @@ export class OrganizacaoController {
   }
 
   @Patch(':id')
-  @Roles(Role.Admin)
+  @Roles(Role.Admin, Role.Organizacao)
   update(@Param('id', ParseIntPipe) id: number, @Body() updateOrganizacaoDto: UpdateOrganizacaoDto) {
     return this.organizacaoService.update(id, updateOrganizacaoDto);
   }

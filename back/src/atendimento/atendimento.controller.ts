@@ -14,7 +14,7 @@ export class AtendimentoController {
   constructor(private readonly atendimentoService: AtendimentoService) {}
 
   @Post()
-  @Roles(Role.Admin, Role.Funcionario)
+  @Roles(Role.Admin, Role.Jogador)
   create(@Body() createAtendimentoDto: CreateAtendimentoDto) {
     return this.atendimentoService.create(createAtendimentoDto);
   }

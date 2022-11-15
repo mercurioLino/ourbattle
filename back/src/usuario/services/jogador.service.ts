@@ -84,7 +84,7 @@ export class JogadorService {
     }
     const atendimento = this.repositoryAtendimento.create(createAtendimentoDto);
     atendimento.feedback = 'Aguardando Conclusão';
-    atendimento.status = 'Em aberto';
+    atendimento.status = 'Em Aberto';
     atendimento.jogador = jogador;
     return this.repositoryAtendimento.save(atendimento);
   }

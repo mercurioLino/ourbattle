@@ -84,6 +84,10 @@ export class OrganizacaoComponent implements OnInit, AfterViewInit, OnDestroy {
     this.router.navigate(["organizacao/create"]);
   }
 
+  navigateToOrganizacaoEditRoleOrganizacao(): void {
+    this.router.navigate(["organizacao/edit-role-organizacao"]);
+  }
+
   checkRole(roles: string[]): boolean {
     return !!this.user && roles.indexOf(this.user.role) > -1;
   }

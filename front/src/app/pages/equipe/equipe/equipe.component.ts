@@ -105,6 +105,10 @@ export class EquipeComponent implements OnInit, AfterViewInit, OnDestroy {
     this.router.navigate(["equipe/inserir-jogador"]);
   }
 
+  navigateToEditEquipeRoleJogador(): void {
+    this.router.navigate(["equipe/edit-role-jogador"]);
+  }
+
   navigateToInserirJogadorEquipeRoleJogador(): void {
     this.router.navigate(["equipe/inserir-jogador-role-jogador/"]);
   }

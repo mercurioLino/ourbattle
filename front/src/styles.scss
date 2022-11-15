@@ -9,6 +9,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; color: whit
     color: #e35e6b;
 }
 
+.loading-shade{
+    background-color: #23013115!important;
+  } 
 
 mat-card{
     color: white
@@ -156,4 +159,13 @@ mat-ripple mat-list-item-ripple{
     margin-left: 80%;
   }
 
+
+  .mat-raised-button{
+    background-color: #4914ac!important;
+    color: white!important;
+  }
+
+  .mat-raised-button:hover{
+    scale: 1.06;
+  }
 

@@ -106,6 +106,14 @@ export class FuncionarioComponent implements OnInit, AfterViewInit, OnDestroy {
     this.router.navigate(["funcionario/create"]);
   }
 
+  navigateToFuncionarioCreateRoleOrganizacao(): void {
+    this.router.navigate(["funcionario/create-role-organizacao"]);
+  }
+
+  navigateToFuncionarioEditRoleOrganizacao(): void {
+    this.router.navigate(["funcionario/edit-role-organizacao"]);
+  }
+
   checkRole(roles: string[]): boolean {
     return !!this.user && roles.indexOf(this.user.role) > -1;
   }

@@ -33,7 +33,7 @@ export class AuthenticationGuard implements CanActivate, CanActivateChild, CanLo
   }
 
   checkAuth(): boolean{
-    if(this.authenticationService.isLoggedIn()){
+    if(this.authenticationService.isLoggedIn() ){
       return true;
     }
     this.authenticationService.logout();
