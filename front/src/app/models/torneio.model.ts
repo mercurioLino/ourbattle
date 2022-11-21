@@ -11,7 +11,7 @@ export interface Torneio {
   regras: string;
   organizacao: Organizacao;
   jogo: Jogo;
-  tipo: String;
+  tipo: string;
   status: 'Inscrições Abertas' | 'Em Andamento' | 'Concluído';
   partidas: Partida[];
 }

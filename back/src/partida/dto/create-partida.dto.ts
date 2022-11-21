@@ -12,9 +12,5 @@ export class CreatePartidaDto {
 
     @IsString()
     @ApiProperty({example:'13:13'})
-    hora: string;
-
-    @Type(() => RelationEntityDto)
-    @ApiProperty({example:'Objeto do tipo Torneio'})
-    torneio: Torneio;   
+    hora: string;   
 }

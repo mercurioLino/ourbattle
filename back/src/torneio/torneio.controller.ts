@@ -6,6 +6,7 @@ import {
 import { ApiTags } from '@nestjs/swagger';
 import { Role } from 'src/enums/role.enum';
 import { RolesGuard } from 'src/guards/role.guard';
+import { CreatePartidaEquipeDto } from 'src/partida/dto/create-partida-equipe.dto';
 import { CreatePartidaIndividualDto } from 'src/partida/dto/create-partida-individual.dto';
 import { IsPublic } from 'src/shared/dto/decorator';
 import { Roles } from 'src/shared/dto/decorator/roles.decorator';
@@ -115,13 +116,22 @@ export class TorneioController {
     return this.torneioService.remove(id);
   }
 
-  @Post(':id/gerar-partidas')
-  @Roles(Role.Admin, Role.Organizacao, Role.Funcionario)
+  @Post('individual/:id/gerar-partidas')
+  @Roles(Role.Admin, Role.Organizacao)
   gerarPartidasIndividuais(
     @Param('id') id: number,
     @Body() createPartidaDto: CreatePartidaIndividualDto,
   ) {
     return this.torneioIndividualService.gerarPartida(id, createPartidaDto);
+  }
+
+  @Post('equipe/:id/gerar-partidas')
+  @Roles(Role.Admin, Role.Organizacao, Role.Funcionario)
+  gerarPartidasEquipes(
+    @Param('id') id: number,
+    @Body() createPartidaDto: CreatePartidaEquipeDto,
+  ) {
+    return this.torneioEquipeService.gerarPartida(id, createPartidaDto);
   }
 
   

@@ -4,5 +4,4 @@ export interface Partida {
   id: number;
   data: string;
   hora: string;
-  torneio: Torneio;
 }

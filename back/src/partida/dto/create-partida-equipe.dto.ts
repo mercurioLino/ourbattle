@@ -8,8 +8,4 @@ import { Torneio } from "src/torneio/entities/torneio.entity";
 import { CreatePartidaDto } from "./create-partida.dto";
 
 export class CreatePartidaEquipeDto extends CreatePartidaDto{
-    @ValidateNested()
-    @Type(() => RelationEntityDto)
-    @ApiProperty({example:'Objeto do tipo Equipe'})
-    equipes: Equipe[];
 }

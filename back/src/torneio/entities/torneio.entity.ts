@@ -38,6 +38,9 @@ export class Torneio {
   @Column()
   status: 'Inscrições Abertas' | 'Em Andamento' | 'Concluído';
 
+  @Column()
+  tipo: 'equipe' | 'individual';
+  
   @OneToMany(() => Partida, (partida) => partida.torneio, {
     eager: true,
   })

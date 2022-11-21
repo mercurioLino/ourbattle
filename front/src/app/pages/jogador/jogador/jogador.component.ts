@@ -85,6 +85,10 @@ export class JogadorComponent implements OnInit, AfterViewInit, OnDestroy {
     this.router.navigate(["jogador/create"]);
   }
 
+  navigateToJogadorRegister(): void {
+    this.router.navigate(["jogador/register"]);
+  }
+
   navigateToJogadorEditRoleJogador(): void {
     this.router.navigate(["jogador/edit-role-jogador"]);
   }

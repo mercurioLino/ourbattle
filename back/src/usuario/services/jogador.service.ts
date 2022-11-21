@@ -1,3 +1,4 @@
+
 import { RecordNotFoundException } from '@exceptions';
 import { Injectable } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
@@ -83,7 +84,7 @@ export class JogadorService {
       throw new RecordNotFoundException();
     }
     const atendimento = this.repositoryAtendimento.create(createAtendimentoDto);
-    atendimento.feedback = 'Aguardando Conclusão';
+
     atendimento.status = 'Em Aberto';
     atendimento.jogador = jogador;
     return this.repositoryAtendimento.save(atendimento);

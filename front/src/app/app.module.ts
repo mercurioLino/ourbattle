@@ -1,3 +1,4 @@
+import { TorneioPartidaComponent } from './pages/torneio/torneio-Partida/torneio-Partida.component';
 import { SuporteComponent } from './pages/suporte/suporte/suporte.component';
 import { JsonDateInterceptor } from './interceptors/json-date.interceptor';
 import { JwtAuthInterceptor } from './interceptors/jwt-auth.interceptor';
@@ -142,7 +143,8 @@ import { FuncionarioEditRoleOrganizacaoComponent } from './pages/funcionario/fun
     TorneioEditRoleOrganizacaoComponent, 
     TorneioCreateRoleOrganizacaoComponent, 
     OrganizacaoEditRoleOrganizacaoComponent, 
-    FuncionarioEditRoleOrganizacaoComponent, 
+    FuncionarioEditRoleOrganizacaoComponent,
+    TorneioPartidaComponent, 
   ],
   imports: [
     MatDialogModule,

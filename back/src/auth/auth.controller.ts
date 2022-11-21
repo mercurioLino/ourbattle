@@ -10,8 +10,8 @@ import { ApiTags } from '@nestjs/swagger';
 @Controller('auth')
 export class AuthController {
     constructor(private readonly authService: AuthService) {}
-    @IsPublic()
     @Post('login')
+    @IsPublic()
     @HttpCode(HttpStatus.OK)
     @UseGuards(LocalAuthGuard)
     login(@CurrentUser() user: Usuario ) {

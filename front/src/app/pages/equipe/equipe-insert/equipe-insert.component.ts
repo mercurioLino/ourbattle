@@ -54,13 +54,13 @@ export class EquipeInsertComponent implements OnInit {
       this.equipeService.inserirJogador(data.equipe.id, data.jogador)
       .pipe(
         catchError((err) =>{
-          this.equipeService.showMessage('Erro ao criar equipe', true);
+          this.equipeService.showMessage('Erro ao Inserir Jogador na equipe', true);
           return err;
         })
       )
 
       .subscribe(resp => {
-        this.equipeService.showMessage('Equipe criada com sucesso!');
+        this.equipeService.showMessage('Jogador Inserido com sucesso!');
         this.router.navigate(['equipe']);
       });
 

@@ -40,6 +40,7 @@ export class CreateTorneioDto {
     @ApiProperty({example:'Objeto do tipo Jogo'})
     jogo: Jogo;
 
+    @ValidateNested()
     @Type(() => CreatePartidaDto)   
     @ApiProperty({example:'Objeto do tipo Partida'})
     partidas: Partida[]

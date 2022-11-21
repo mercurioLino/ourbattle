@@ -122,6 +122,11 @@
         >
           <i *ngIf="checkRole(['admin'])" class="material-icons">delete</i>
         </a>
+
+        <a routerLink="/torneio/gerar-partidas">
+          <i *ngIf="checkRole(['admin', 'organizacao'])" class="material-icons">supervised_user_circle</i>
+        </a>
+
       </td>
     </ng-container>
 

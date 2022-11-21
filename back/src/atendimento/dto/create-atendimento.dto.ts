@@ -1,3 +1,4 @@
+
 import { ApiProperty } from '@nestjs/swagger';
 import { Type } from 'class-transformer';
 import { IsString } from 'class-validator';
@@ -19,4 +20,6 @@ export class CreateAtendimentoDto {
   @Type(() => RelationEntityDto)
   @ApiProperty({ example: 'Objeto do tipo Organizacao' })
   organizacao: Organizacao;
+
+
 }

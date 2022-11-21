@@ -1,6 +1,6 @@
 import { PartidaIndividual } from 'src/partida/entities/partida-individual.entity';
 import { RecordNotFoundException } from '@exceptions';
-import { Injectable } from '@nestjs/common';
+import { Injectable, NotAcceptableException } from '@nestjs/common';
 import { InjectRepository } from '@nestjs/typeorm';
 import { FindOptionsWhere, ILike, Repository } from 'typeorm';
 import { CreateTorneioIndividualDto } from './dto/create-torneio-individual.dto';
@@ -18,12 +18,10 @@ import {
 @Injectable()
 export class TorneioIndividualService {
   constructor(
-    @InjectRepository(TorneioIndividual)
-    private repository: Repository<TorneioIndividual>,
+    @InjectRepository(TorneioIndividual) private repository: Repository<TorneioIndividual>,
     @InjectRepository(Jogador) private repositoryJogador: Repository<Jogador>,
-    @InjectRepository(PartidaIndividual)
-    private repositoryPartida: Repository<PartidaIndividual>,
-  ) {}
+    @InjectRepository(PartidaIndividual) private repositoryPartida: Repository<PartidaIndividual>,
+  ) { }
 
   create(createTorneioIndividualDto: CreateTorneioIndividualDto) {
     const torneioIndividual: TorneioIndividual = this.repository.create(
@@ -82,6 +80,11 @@ export class TorneioIndividualService {
     const jogador = await this.repositoryJogador.findOneBy({
       id: relationEntityDto.id,
     });
+
+    if (torneio.jogadores.map((v) => v.id).includes(jogador.id)) {
+      return new NotAcceptableException('Jogador já inscrito no torneio');
+    }
+
     if (!jogador) {
       throw new RecordNotFoundException();
     }
@@ -91,21 +94,20 @@ export class TorneioIndividualService {
 
   async gerarPartida(id: number, createPartidaDto: CreatePartidaIndividualDto) {
     const torneio = await this.findOne(id);
-    torneio.partidas = [];
 
-    const jogadoresInscritos = torneio.jogadores;
-    const jogadoresAuxiliar: Jogador[] = [];
-    if (jogadoresInscritos.length < 16) {
-      return 'Não há jogadores suficientes inscritos para gerar as partidas';
+    for (let partida of torneio.partidas) {
+      this.repositoryPartida.delete(partida.id);
     }
 
-    for (let i = 0; i < 16; i++) {
-      jogadoresAuxiliar[i] = jogadoresInscritos[i];
+    const jogadoresInscritos = [...torneio.jogadores];
+    if (jogadoresInscritos.length < 16) {
+      return 'Não há jogadores suficientes inscritos para gerar as partidas';
     }
 
     for (let i = 0; i < 8; i++) {
       const partida = this.repositoryPartida.create(createPartidaDto);
       partida.jogadores = [];
+      partida.torneio = torneio;
       for (let j = 0; j < 2; j++) {
         const indexJogador = Math.floor(
           Math.random() * jogadoresInscritos.length,
@@ -113,11 +115,9 @@ export class TorneioIndividualService {
         partida.jogadores.push(jogadoresInscritos[indexJogador]);
         jogadoresInscritos.splice(indexJogador, 1);
       }
-      torneio.partidas.push(partida);
+      await this.repositoryPartida.save(partida);
     }
-
-    torneio.jogadores = jogadoresAuxiliar;
-    return this.repository.save(torneio);
+    return this.findOne(id);
   }
 
   async declararVencedor(id: number, relationEntityDto: RelationEntityDto) {

@@ -7,8 +7,4 @@ import { Jogador } from "src/usuario/entities/jogador.entity";
 import { CreatePartidaDto } from "./create-partida.dto";
 
 export class CreatePartidaIndividualDto extends CreatePartidaDto{
-    @ValidateNested()
-    @Type(() => RelationEntityDto)
-    @ApiProperty({example:'Objeto do tipo Jogador'})
-    jogadores: Jogador[];
 }

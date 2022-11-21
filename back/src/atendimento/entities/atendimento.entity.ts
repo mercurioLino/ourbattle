@@ -29,6 +29,5 @@ export class Atendimento {
   })
   funcionario?: Funcionario;
 
-  @Column()
-  feedback?: string;
+
 }

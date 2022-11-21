@@ -22,9 +22,9 @@ export class PartidaEquipeService {
   async findAll(options: IPaginationOptions, search?: string): Promise<Pagination<PartidaEquipe>> {
     const where: FindOptionsWhere<PartidaEquipe>={}; 
 
-    if (search) {
+    /*if (search) {
       where.torneio = ILike(`%${search}%`);
-    }
+    }*/
         
     return paginate<PartidaEquipe>(this.repository, options, {where});
   }

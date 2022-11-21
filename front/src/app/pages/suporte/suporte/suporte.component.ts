@@ -23,7 +23,7 @@ export class SuporteComponent implements OnInit {
   data: Suporte[] = [];
   resultsLength: number = 0;
   subscriptions: Subscription[] = [];
-  displayedColumns: string[] = ["id", "descricao", "jogador", "organizacao", "actions"];
+  displayedColumns: string[] = ["id", "descricao", "jogador", "actions"];
   form!: FormGroup;
   refresh: Subject<boolean> = new Subject();
 

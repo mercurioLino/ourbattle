@@ -7,6 +7,7 @@ import { Equipe } from "src/app/models/equipe.model";
 import { Jogador } from "src/app/models/jogador.model";
 import { ResponseDataList } from "src/app/models/shared";
 import { Torneio } from "src/app/models/torneio.model";
+import { Partida } from "src/app/models/partida.model";
 import { environment } from "src/environments/environment";
 @Injectable({
   providedIn: "root",
@@ -103,6 +104,14 @@ export class TorneioService {
 
   inserirJogador(id:number, jogador: Jogador): Observable<Torneio> {
     return this.http.post<Torneio>(environment.baseUrl + this.baseApi + `/${id}` + "/add-jogador", jogador);
+  }
+
+  gerarPartidaIndividual(id:number, partida: Partida): Observable<Torneio> {
+    return this.http.post<Torneio>(environment.baseUrl + this.baseApi + `/individual/${id}` + "/gerar-partidas", partida);
+  }
+
+  gerarPartidaEquipe(id:number, partida: Partida): Observable<Torneio> {
+    return this.http.post<Torneio>(environment.baseUrl + this.baseApi + `/equipe/${id}` + "/gerar-partidas", partida);
   }
 
   inserirEquipe(id:number, equipe: Equipe): Observable<Torneio> {

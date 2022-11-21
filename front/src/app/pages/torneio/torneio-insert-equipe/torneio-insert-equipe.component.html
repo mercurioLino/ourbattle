@@ -1,9 +1,9 @@
 <mat-card>
-  <mat-card-title>Inserir Jogador em Equipe</mat-card-title>
+  <mat-card-title>Inserir Equipe no Torneio</mat-card-title>
 
   <form [formGroup]="form">
     <mat-form-field appearance="outline">
-      <mat-label>Jogador</mat-label>
+      <mat-label>Equipe</mat-label>
       <mat-select name="equipe" formControlName="equipe">
         <mat-option *ngFor="let equipe of equipes" [value]="equipe">
           {{ equipe.nome }}

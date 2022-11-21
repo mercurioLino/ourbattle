@@ -14,9 +14,7 @@ export class Equipe {
     pontuacao = 0;
 
     @OneToMany(() => Jogador, (jogador) => jogador.equipe, {
-        cascade: true,
         eager: true,
-        onDelete: "CASCADE"
     })
     jogadores?: Jogador[];
 }

@@ -17,7 +17,7 @@ export class TorneioEquipeService {
   constructor(
     @InjectRepository(TorneioEquipe) private repository: Repository<TorneioEquipe>,
     @InjectRepository(Equipe) private repositoryEquipe: Repository<Equipe>,
-    @InjectRepository(PartidaEquipe) private repositoryPartidaEquipe: Repository<PartidaEquipe>
+    @InjectRepository(PartidaEquipe) private repositoryPartida: Repository<PartidaEquipe>
   ) {}
 
   create(createTorneioEquipeDto: CreateTorneioEquipeDto) {
@@ -71,33 +71,32 @@ export class TorneioEquipeService {
     return this.repository.save(torneio);
   }
 
-  async gerarPartida(id: number, createPartidaDto: CreatePartidaEquipeDto){
+  async gerarPartida(id: number, createPartidaDto: CreatePartidaEquipeDto) {
     const torneio = await this.findOne(id);
-    torneio.partidas = []
 
-    const jogadoresInscritos = torneio.equipes;
-    const equipesAuxiliar: Equipe[] = [];
-    if(jogadoresInscritos.length < 16){
-      return 'Não há equipes suficientes inscritas para gerar as partidas'
-    } 
- 
-    for(let i = 0; i < 16; i++){
-      equipesAuxiliar[i] = jogadoresInscritos[i];
+    for (let partida of torneio.partidas) {
+      this.repositoryPartida.delete(partida.id);
     }
-    
-    for(let i = 0; i < 8; i++){
-      const partida = this.repositoryPartidaEquipe.create(createPartidaDto);
+
+    const jogadoresInscritos = [...torneio.equipes];
+    if (jogadoresInscritos.length < 16) {
+      return 'Não há jogadores suficientes inscritos para gerar as partidas';
+    }
+
+    for (let i = 0; i < 8; i++) {
+      const partida = this.repositoryPartida.create(createPartidaDto);
       partida.equipes = [];
-      for(let j = 0; j < 2; j++){
-        const indexJogador=Math.floor(Math.random() * jogadoresInscritos.length)
+      partida.torneio = torneio;
+      for (let j = 0; j < 2; j++) {
+        const indexJogador = Math.floor(
+          Math.random() * jogadoresInscritos.length,
+        );
         partida.equipes.push(jogadoresInscritos[indexJogador]);
         jogadoresInscritos.splice(indexJogador, 1);
       }
-      torneio.partidas.push(partida)
+      await this.repositoryPartida.save(partida);
     }
-
-    torneio.equipes = equipesAuxiliar;
-    return this.repository.save(torneio);
+    return this.findOne(id);
   }
 
   async declararVencedor(id: number, relationEntityDto: RelationEntityDto) {

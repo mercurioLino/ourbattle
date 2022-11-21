@@ -1,3 +1,4 @@
+import { TorneioPartidaComponent } from './pages/torneio/torneio-Partida/torneio-Partida.component';
 import { FuncionarioEditRoleOrganizacaoComponent } from './pages/funcionario/funcionario-edit-role-organizacao/funcionario-edit-role-organizacao.component';
 import { OrganizacaoEditRoleOrganizacaoComponent } from './pages/organizacao/organizacao-edit-role-organizacao/organizacao-edit-role-organizacao.component';
 import { TorneioCreateRoleOrganizacaoComponent } from './pages/torneio/torneio-create-role-organizacao/torneio-create-role-organizacao.component';
@@ -97,7 +98,8 @@ const routes: Routes = [
       {path: 'create', component: TorneioCreateComponent, canActivate: [RoleGuard], data: {role: [Role.Admin]}},
       {path: 'create-role-organizacao', component: TorneioCreateRoleOrganizacaoComponent, canActivate: [RoleGuard], data: {role: [Role.Organizacao]}},
       {path: ':id/edit', component: TorneioEditComponent, canActivate: [RoleGuard], data: {role: [Role.Admin]}},
-      {path: 'edit-role-organizacao', component: TorneioEditRoleOrganizacaoComponent, canActivate: [RoleGuard], data: {role: [Role.Organizacao]}},
+      {path: 'gerar-partidas', component: TorneioPartidaComponent, canActivate: [RoleGuard], data: {role: [Role.Admin]}},
+      {path: 'edit-role-organizacao', component: TorneioEditRoleOrganizacaoComponent, canActivate: [RoleGuard], data: {role: [Role.Organizacao, Role.Organizacao]}},
       {path:'inserir-jogador', component: TorneioInsertJogadorComponent,canActivate: [RoleGuard], data: {role: [Role.Admin]}},
       {path:'inserir-equipe', component: TorneioInsertEquipeComponent,canActivate: [RoleGuard], data: {role: [Role.Admin, Role.Organizacao]}},
       {path:'inserir-jogador-role-jogador', component: TorneioInsertJogadorRoleJogadorComponent, canActivate: [RoleGuard], data: {role: [Role.Admin, Role.Jogador]}},
